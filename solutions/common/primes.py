@@ -27,10 +27,3 @@ def gen_primes():
             del composites[number]
 
         number += 1
-
-
-def list_primes(up_to):
-    """
-    Returns a list of primes < up_to.
-    """
-    return list(itertools.islice(gen_primes(), 0, int(up_to)))
