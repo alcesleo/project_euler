@@ -1,6 +1,6 @@
 import itertools
 from functools import reduce
-from common.factors import factors
+from common.tools import factors
 
 LIMIT = 500
 
