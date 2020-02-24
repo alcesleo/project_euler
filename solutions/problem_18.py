@@ -22,14 +22,14 @@ def parse_triangle(text):
         map(lambda row: [int(n) for n in row.split(" ")], text.strip().splitlines()))
 
 
-def maximum_below(row, index):
+def maximum_above(index, row_above):
     if index - 1 < 0:
-        return row[index]
+        return row_above[index]
 
-    if index >= len(row):
-        return row[index - 1]
+    if index >= len(row_above):
+        return row_above[index - 1]
 
-    return max(row[index - 1], row[index])
+    return max(row_above[index - 1], row_above[index])
 
 
 def maximum_path(triangle):
@@ -37,11 +37,11 @@ def maximum_path(triangle):
 
     for row in triangle:
         maxima = [
-            n + maximum_below(maxima, i) for i, n in enumerate(row)]
+            n + maximum_above(i, maxima) for i, n in enumerate(row)]
 
     return max(maxima)
 
 
-TRIANGLE = parse_triangle(INPUT)
-
-print(maximum_path(TRIANGLE))
+if __name__ == "__main__":
+    TRIANGLE = parse_triangle(INPUT)
+    print(maximum_path(TRIANGLE))
