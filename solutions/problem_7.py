@@ -1,8 +1,9 @@
 import itertools
-from common import primes
+from common.primes import gen_primes
+from common.tools import nth
 
 TARGET = 10_001
 
-nth_prime = next(itertools.islice(primes.gen_primes(), TARGET - 1, None))
+nth_prime = nth(gen_primes(), TARGET)
 
 print(nth_prime)

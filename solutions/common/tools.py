@@ -1,5 +1,5 @@
-from functools import reduce
-from functools import lru_cache
+import itertools
+from functools import reduce, lru_cache
 
 
 def factors(n):
@@ -21,3 +21,9 @@ def proper_divisors(n):
 
 def sum_of_digits(number):
     return sum([int(x) for x in str(number)])
+
+
+def nth(iterable, index):
+    """Returns the nth index in an iterable
+    """
+    return next(itertools.islice(iterable, index - 1, None))

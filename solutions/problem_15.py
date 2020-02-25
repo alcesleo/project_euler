@@ -1,4 +1,5 @@
 import itertools
+from common.tools import nth
 
 # http://www.robertdickau.com/manhattan.html
 # https://en.wikipedia.org/wiki/Binomial_coefficient
@@ -19,7 +20,7 @@ def gen_pascal_triangle():
 
 LIMIT = 20
 
-row = next(itertools.islice(gen_pascal_triangle(), LIMIT*2, None))
+row = nth(gen_pascal_triangle(), LIMIT*2 + 1)
 result = row[len(row) // 2]
 
 print(result)
