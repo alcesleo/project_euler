@@ -19,8 +19,10 @@ def proper_divisors(n):
     return factors(n) - {n}
 
 
-def sum_of_digits(number):
-    return sum([int(x) for x in str(number)])
+def digits(n):
+    """Returns a list of the digits in n
+    """
+    return [int(d) for d in str(n)]
 
 
 def nth(iterable, index):

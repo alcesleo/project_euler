@@ -1,5 +1,5 @@
 import math
-from common.tools import sum_of_digits
+from common.tools import digits
 
 TARGET = 100
-print(sum_of_digits(math.factorial(TARGET)))
+print(sum(digits(math.factorial(TARGET))))
