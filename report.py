@@ -26,7 +26,7 @@ def print_headers():
 
 def get_solution_files():
     (_, _, filenames) = next(os.walk(SOLUTIONS_PATH))
-    filenames.sort(key=lambda p: int(re.findall("\d+", p)[0]))
+    filenames.sort()
     return filenames
 
 
