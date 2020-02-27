@@ -19,7 +19,7 @@ def gen_primes():
             # Add this number as a prime factor of the first multiple of it
             composites[number * number] = [number]
         else:
-            # It's a composite number, mark the next multiples as prime factors
+            # If it's a composite number, mark factors of its composites
             for factor in composites[number]:
                 composites.setdefault(factor + number, []).append(factor)
 
