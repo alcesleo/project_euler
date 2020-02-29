@@ -29,3 +29,9 @@ def nth(iterable, index):
     """Returns the nth index in an iterable
     """
     return next(itertools.islice(iterable, index - 1, None))
+
+
+def is_palindrome(number):
+    number = str(number)
+    reverse = number[::-1]
+    return number == reverse

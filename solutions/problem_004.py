@@ -1,8 +1,4 @@
-def is_palindrome(number):
-    number = str(number)
-    reverse = number[::-1]
-    return number == reverse
-
+from common.tools import is_palindrome
 
 largest_palindrome = 0
 
