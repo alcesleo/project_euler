@@ -16,9 +16,13 @@ def gen_triangle_numbers():
         yield triangle
 
 
-for triangle in gen_triangle_numbers():
-    num_factors = len(factors(triangle))
+def solve():
+    for triangle in gen_triangle_numbers():
+        num_factors = len(factors(triangle))
 
-    if num_factors > LIMIT:
-        print(triangle)
-        break
+        if num_factors > LIMIT:
+            return triangle
+
+
+if __name__ == "__main__":
+    print(solve())

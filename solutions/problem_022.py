@@ -11,7 +11,10 @@ def alphabetical_value(name):
     return sum([ord(c) - ASCII_OFFSET for c in name])
 
 
-result = sum([alphabetical_value(name) * (position + 1)
-              for position, name in enumerate(names)])
+def solve():
+    return sum([alphabetical_value(name) * (position + 1)
+                for position, name in enumerate(names)])
 
-print(result)
+
+if __name__ == "__main__":
+    print(solve())
