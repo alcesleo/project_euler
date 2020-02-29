@@ -9,3 +9,7 @@ def read_data(filename):
     """
     with open(os.path.join(DATA_PATH, filename), "r") as data_file:
         return data_file.read()
+
+
+def parse_words(data):
+    return [s.replace('"', "") for s in data.split(",")]

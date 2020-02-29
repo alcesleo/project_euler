@@ -1,10 +1,10 @@
-from common.data import read_data
+from common.data import read_data, parse_words
 
 data = read_data("p022_names.txt")
-names = [s.replace('"', "") for s in data.split(",")]
+names = parse_words(data)
 names.sort()
 
-ASCII_OFFSET = offset = ord("A") - 1
+ASCII_OFFSET = ord("A") - 1
 
 
 def alphabetical_value(name):
