@@ -1,11 +1,7 @@
 from itertools import takewhile
 from collections import deque
-from common.tools import digits
+from common.tools import digits, digits_to_int
 from common.primes import gen_primes, is_prime
-
-
-def digits_to_int(d):
-    return int("".join(map(str, d)))
 
 
 def rotations(n):

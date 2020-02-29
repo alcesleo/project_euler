@@ -25,6 +25,12 @@ def digits(n):
     return [int(d) for d in str(n)]
 
 
+def digits_to_int(d):
+    """Returns an int from concatenating a list of its digits
+    """
+    return int("".join(map(str, d)))
+
+
 def nth(iterable, index):
     """Returns the nth index in an iterable
     """
