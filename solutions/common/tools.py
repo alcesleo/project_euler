@@ -32,7 +32,7 @@ def digits_to_int(d):
 
 
 def nth(iterable, index):
-    """Returns the nth index in an iterable
+    """Returns the nth 1-index in an iterable
     """
     return next(itertools.islice(iterable, index - 1, None))
 
