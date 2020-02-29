@@ -29,25 +29,12 @@ def gen_primes():
         number += 1
 
 
-def is_prime_factory():
-    """
-    Returns an is_prime(n) function which keeps an internal set of primes
-    and generates as much as many primes as it needs to answer whether n is a prime
-    """
-    generator = gen_primes()
-    primes = set()
-    last_prime = 0
+def is_prime(n):
+    if n < 2:
+        return False
 
-    def is_prime(n):
-        nonlocal last_prime
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
 
-        while n > last_prime:
-            last_prime = next(generator)
-            primes.add(last_prime)
-
-        return n in primes
-
-    return is_prime
-
-
-is_prime = is_prime_factory()
+    return True
