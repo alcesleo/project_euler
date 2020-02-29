@@ -43,5 +43,5 @@ def maximum_path(triangle):
 
 
 if __name__ == "__main__":
-    TRIANGLE = parse_triangle(INPUT)
-    print(maximum_path(TRIANGLE))
+    triangle = parse_triangle(INPUT)
+    print(maximum_path(triangle))

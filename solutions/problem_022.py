@@ -1,14 +1,10 @@
-import os
+from common.data import read_data
 
-SCRIPT_PATH = os.path.dirname(__file__)
-DATA_PATH = "data/p022_names.txt"
-ASCII_OFFSET = offset = ord("A") - 1
-
-with open(os.path.join(SCRIPT_PATH, DATA_PATH), "r") as input_file:
-    data = input_file.read()
-
+data = read_data("p022_names.txt")
 names = [s.replace('"', "") for s in data.split(",")]
 names.sort()
+
+ASCII_OFFSET = offset = ord("A") - 1
 
 
 def alphabetical_value(name):
