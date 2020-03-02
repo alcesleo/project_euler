@@ -26,6 +26,7 @@ python -m doctest -v solutions/problem_001.py
 ## Documentation
 
 - [collections](https://docs.python.org/3.6/library/collections.html)
+- [doctest](https://docs.python.org/3.6/library/doctest.html)
 - [fractions](https://docs.python.org/3.6/library/fractions.html)
 - [functools](https://docs.python.org/3.6/library/functools.html)
 - [itertools](https://docs.python.org/3.6/library/itertools.html)
