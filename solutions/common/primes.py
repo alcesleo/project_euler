@@ -1,8 +1,14 @@
+import itertools
+
+
 def gen_primes():
     """
     Generates an infinite sequence of prime numbers.
 
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+
+    >>> list(itertools.islice(gen_primes(), 10))
+    [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
     """
 
     composites = {}  # A dict of composite numbers mapped to a list of their factors
@@ -27,6 +33,14 @@ def gen_primes():
 
 
 def is_prime(n):
+    """Returns whether n is prime
+
+    >>> is_prime(29)
+    True
+
+    >>> is_prime(28)
+    False
+    """
     if n < 2:
         return False
 
