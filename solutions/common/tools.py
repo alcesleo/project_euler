@@ -15,6 +15,12 @@ def factors(n):
 @lru_cache(maxsize=256)
 def proper_divisors(n):
     """The proper divisors of n are its factors other than itself
+
+    >>> proper_divisors(10)
+    {1, 2, 5}
+
+    >>> proper_divisors(2)
+    {1}
     """
     return factors(n) - {n}
 

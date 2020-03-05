@@ -1,6 +1,3 @@
-import itertools
-
-
 def gen_primes():
     """
     Generates an infinite sequence of prime numbers.
