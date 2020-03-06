@@ -1,7 +1,6 @@
-from common.data import read_data, parse_words
+from common.data import read_strs
 
-data = read_data("p022_names.txt")
-names = parse_words(data)
+names = read_strs("p022_names.txt")
 names.sort()
 
 ASCII_OFFSET = ord("A") - 1

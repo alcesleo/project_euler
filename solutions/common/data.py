@@ -11,5 +11,6 @@ def read_data(filename):
         return data_file.read()
 
 
-def parse_words(data):
+def read_strs(filename):
+    data = read_data(filename)
     return [s.replace('"', "") for s in data.split(",")]
