@@ -1,5 +1,6 @@
 import itertools
 from functools import reduce, lru_cache
+from itertools import permutations
 
 
 def factors(n):
@@ -27,14 +28,32 @@ def proper_divisors(n):
 
 def digits(n):
     """Returns a list of the digits in n
+
+    >>> digits(123)
+    [1, 2, 3]
     """
     return [int(d) for d in str(n)]
 
 
-def digits_to_int(d):
-    """Returns an int from concatenating a list of its digits
+def concatenate_digits(d):
+    """Returns an int from concatenating a list of digits
+
+    >>> concatenate_digits(["1", "2", "3"])
+    123
+
+    >>> concatenate_digits(["123", "456"])
+    123456
     """
     return int("".join(map(str, d)))
+
+
+def digit_permutations(n):
+    """Returns all permutations of digits of n
+
+    >>> digit_permutations(123)
+    {321, 132, 231, 213, 312, 123}
+    """
+    return set(map(concatenate_digits, permutations(digits(n))))
 
 
 def nth(iterable, index):
@@ -43,7 +62,15 @@ def nth(iterable, index):
     return next(itertools.islice(iterable, index - 1, None))
 
 
-def is_palindrome(number):
-    number = str(number)
-    reverse = number[::-1]
-    return number == reverse
+def is_palindrome(n):
+    """Returns whether a n is a palindrome
+
+    >>> is_palindrome(12321)
+    True
+
+    >>> is_palindrome(123210)
+    False
+    """
+    n = str(n)
+    reverse = n[::-1]
+    return n == reverse

@@ -1,5 +1,5 @@
 from common.primes import gen_primes, is_prime
-from common.tools import digits, digits_to_int
+from common.tools import digits, concatenate_digits
 
 EXCLUDE = {2, 3, 5, 7}
 
@@ -15,8 +15,8 @@ def truncations(n):
     result = set([n])
 
     for i in range(1, len(d)):
-        result.add(digits_to_int(d[i:]))
-        result.add(digits_to_int(d[:i]))
+        result.add(concatenate_digits(d[i:]))
+        result.add(concatenate_digits(d[:i]))
 
     return result
 

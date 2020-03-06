@@ -1,5 +1,5 @@
 from common.data import read_data
-from common.tools import digits, digits_to_int
+from common.tools import digits, concatenate_digits
 import numpy as np
 
 SIZE = 9
@@ -77,7 +77,7 @@ def solve(debug=False):
 
     for i, sudoku in enumerate(sudokus, 1):
         solved = solve_sudoku(sudoku)
-        top_left = digits_to_int(sudoku[0, 0:3])
+        top_left = concatenate_digits(sudoku[0, 0:3])
         result += top_left
 
         if debug:

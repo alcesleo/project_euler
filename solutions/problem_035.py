@@ -1,6 +1,6 @@
 from itertools import takewhile
 from collections import deque
-from common.tools import digits, digits_to_int
+from common.tools import digits, concatenate_digits
 from common.primes import gen_primes, is_prime
 
 
@@ -9,7 +9,7 @@ def rotations(n):
     result = []
 
     for i in range(len(d)):
-        result.append(digits_to_int(d))
+        result.append(concatenate_digits(d))
         d.rotate()
 
     return result

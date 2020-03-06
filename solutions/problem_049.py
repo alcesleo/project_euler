@@ -1,15 +1,6 @@
-from itertools import takewhile, dropwhile, permutations, combinations
+from itertools import takewhile, dropwhile, combinations
 from common.primes import gen_primes
-from common.tools import digits, digits_to_int
-
-
-def digit_permutations(n):
-    """Returns all permutations of digits of n
-
-    >>> digit_permutations(123)
-    {321, 132, 231, 213, 312, 123}
-    """
-    return set(map(digits_to_int, permutations(digits(n))))
+from common.tools import concatenate_digits, digit_permutations
 
 
 def difference_list(l):
@@ -48,7 +39,7 @@ def solve():
 
         for terms in terms_of_three:
             if equidistant(terms):
-                result = digits_to_int(terms)
+                result = concatenate_digits(terms)
                 if result != EXCLUDE:
                     return result
 
