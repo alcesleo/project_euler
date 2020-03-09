@@ -1,5 +1,4 @@
 from fractions import Fraction
-from common.tools import digits
 
 result = 1
 

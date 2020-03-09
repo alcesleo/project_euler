@@ -1,5 +1,5 @@
 from common.data import read_data
-from common.tools import concatenate_digits
+from common.tools import join_digits
 from math import log
 
 data = read_data("p099_base_exp.txt")

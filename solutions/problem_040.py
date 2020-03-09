@@ -1,12 +1,12 @@
 from functools import reduce
 from operator import mul
 from itertools import count
-from common.tools import digits, nth
+from common.tools import split_digits, nth
 
 
 def gen_champernownes_decimals():
     for i in count(1):
-        for d in digits(i):
+        for d in split_digits(i):
             yield d
 
 

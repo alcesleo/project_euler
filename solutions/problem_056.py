@@ -1,11 +1,11 @@
-from common.tools import digits
+from common.tools import split_digits
 
 LIMIT = 100
 maximum_sum = 0
 
 for a in range(LIMIT):
     for b in range(LIMIT):
-        digit_sum = sum(digits(a ** b))
+        digit_sum = sum(split_digits(a ** b))
 
         if digit_sum > maximum_sum:
             maximum_sum = digit_sum

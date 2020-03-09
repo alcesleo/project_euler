@@ -1,9 +1,9 @@
-from common.tools import digits
+from common.tools import split_digits
 import itertools
 
 
 def sum_of_digits_raised(n, power):
-    return sum([x ** power for x in digits(n)])
+    return sum([x ** power for x in split_digits(n)])
 
 
 POWER = 5

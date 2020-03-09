@@ -1,4 +1,4 @@
-from common.tools import digits
+from common.tools import split_digits
 
 DIGITS = set(range(1, 10))
 
@@ -6,7 +6,7 @@ DIGITS = set(range(1, 10))
 def unique_digits(n):
     """Returns the unique digits of n as a set, or None if any digits are repeated
     """
-    d = digits(n)
+    d = split_digits(n)
     s = set(d)
 
     if len(d) == len(s):

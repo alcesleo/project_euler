@@ -26,22 +26,22 @@ def proper_divisors(n):
     return factors(n) - {n}
 
 
-def digits(n):
+def split_digits(n):
     """Returns a list of the digits in n
 
-    >>> digits(123)
+    >>> split_digits(123)
     [1, 2, 3]
     """
     return [int(d) for d in str(n)]
 
 
-def concatenate_digits(d):
+def join_digits(d):
     """Returns an int from concatenating a list of digits
 
-    >>> concatenate_digits(["1", "2", "3"])
+    >>> join_digits([1, 2, 3])
     123
 
-    >>> concatenate_digits(["123", "456"])
+    >>> join_digits([123, 456])
     123456
     """
     return int("".join(map(str, d)))
@@ -53,7 +53,7 @@ def digit_permutations(n):
     >>> digit_permutations(123)
     {321, 132, 231, 213, 312, 123}
     """
-    return set(map(concatenate_digits, permutations(digits(n))))
+    return set(map(join_digits, permutations(split_digits(n))))
 
 
 def nth(iterable, index):

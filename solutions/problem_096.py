@@ -1,5 +1,5 @@
 from common.data import read_data
-from common.tools import digits, concatenate_digits
+from common.tools import split_digits, join_digits
 import numpy as np
 
 SIZE = 9
@@ -17,7 +17,7 @@ def parse_sudokus(data):
         if "Grid" in row:
             continue
 
-        current.append(digits(row))
+        current.append(split_digits(row))
 
         if len(current) == SIZE:
             sudokus.append(np.array(current))
@@ -77,7 +77,7 @@ def solve(debug=False):
 
     for i, sudoku in enumerate(sudokus, 1):
         solved = solve_sudoku(sudoku)
-        top_left = concatenate_digits(sudoku[0, 0:3])
+        top_left = join_digits(sudoku[0, 0:3])
         result += top_left
 
         if debug:

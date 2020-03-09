@@ -1,11 +1,11 @@
-from common.tools import digits
+from common.tools import split_digits
 from collections import Counter
 
 PANDIGITAL = Counter(range(1, 10))
 
 
 def is_pandigital(n):
-    return PANDIGITAL == Counter(digits(n))
+    return PANDIGITAL == Counter(split_digits(n))
 
 
 def concatenated_product(n, up_to):

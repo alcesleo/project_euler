@@ -1,15 +1,15 @@
 from itertools import takewhile
 from collections import deque
-from common.tools import digits, concatenate_digits
+from common.tools import split_digits, join_digits
 from common.primes import gen_primes, is_prime
 
 
 def rotations(n):
-    d = deque(digits(n))
+    d = deque(split_digits(n))
     result = []
 
     for i in range(len(d)):
-        result.append(concatenate_digits(d))
+        result.append(join_digits(d))
         d.rotate()
 
     return result

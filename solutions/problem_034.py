@@ -1,9 +1,9 @@
 from math import factorial
-from common.tools import digits
+from common.tools import split_digits
 
 
 def digit_factorial(n):
-    return sum(map(factorial, digits(n)))
+    return sum(map(factorial, split_digits(n)))
 
 
 result = 0

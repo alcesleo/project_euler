@@ -1,6 +1,6 @@
 from itertools import takewhile, dropwhile, combinations
 from common.primes import gen_primes
-from common.tools import concatenate_digits, digit_permutations
+from common.tools import join_digits, digit_permutations
 
 
 def difference_list(l):
@@ -39,7 +39,7 @@ def solve():
 
         for terms in terms_of_three:
             if equidistant(terms):
-                result = concatenate_digits(terms)
+                result = join_digits(terms)
                 if result != EXCLUDE:
                     return result
 

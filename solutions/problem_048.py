@@ -1,4 +1,3 @@
-
 LIMIT = 1000
 result = 0
 

@@ -1,7 +1,7 @@
 from itertools import permutations
 from collections import defaultdict
 from common.data import read_strs
-from common.tools import concatenate_digits
+from common.tools import join_digits
 
 
 def find_anagrams(words):
@@ -49,7 +49,7 @@ def replace_letters(word, numbers, mapping):
     >>> replace_letters("RACE", (1, 9, 6, 2), {'C': 0, 'R': 1, 'E': 2, 'A': 3})
     9216
     """
-    return concatenate_digits(numbers[mapping[letter]] for letter in word)
+    return join_digits(numbers[mapping[letter]] for letter in word)
 
 
 def is_square(n):
