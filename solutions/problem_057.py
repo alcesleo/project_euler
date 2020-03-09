@@ -1,11 +1,10 @@
 from common.tools import split_digits
+
 from fractions import Fraction
-import sys
+from functools import lru_cache
 
 
 LIMIT = 1000
-
-sys.setrecursionlimit(LIMIT * 2)
 
 
 def expand_root_two(iterations):
@@ -31,6 +30,7 @@ def expand_root_two(iterations):
     return 1 + Fraction(1, denominator(iterations))
 
 
+@lru_cache(maxsize=1)
 def denominator(iterations):
     if iterations == 0:
         return 2
@@ -52,5 +52,6 @@ def solve():
             result += 1
 
     return result
+
 
 print(solve())
