@@ -70,6 +70,9 @@ def is_palindrome(n):
 
     >>> is_palindrome(123210)
     False
+
+    >>> is_palindrome("racecar")
+    True
     """
     n = str(n)
     reverse = n[::-1]
