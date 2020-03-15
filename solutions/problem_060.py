@@ -71,4 +71,5 @@ def solve(group_size=4, limit=1000):
     return lowest_sum
 
 
-print(solve(5, 10_000))
+if __name__ == "__main__":
+    print(solve(5, 10_000))

@@ -1,5 +1,5 @@
 from common.data import read_data
-from common.tools import split_digits, join_digits
+from common.tools import split_digits, join_digits, debug
 import numpy as np
 
 SIZE = 9
@@ -70,7 +70,7 @@ def solve_sudoku(sudoku, cell=0):
     return False
 
 
-def solve(debug=False):
+def solve():
     data = read_data("p096_sudoku.txt")
     sudokus = parse_sudokus(data)
     result = 0
@@ -80,12 +80,12 @@ def solve(debug=False):
         top_left = join_digits(sudoku[0, 0:3])
         result += top_left
 
-        if debug:
-            print(f"Sudoku {i} {'solved' if solved else 'FAILED'}: {top_left}")
-            print(sudoku)
-            print()
+        debug(f"Sudoku {i} {'solved' if solved else 'FAILED'}: {top_left}")
+        debug(sudoku)
+        debug()
 
     return result
 
 
-print(solve())
+if __name__ == "__main__":
+    print(solve())

@@ -2,6 +2,8 @@ import numpy as np
 import operator
 from functools import reduce
 
+from common.tools import debug
+
 INPUT = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -38,7 +40,6 @@ grid = np.array(parsed_grid)
 
 WINDOW = 4
 GRID_SIZE = 20
-DEBUG = False
 
 greatest_product = 0
 
@@ -47,8 +48,7 @@ def check_greatest_product(tag, numbers):
     global greatest_product
 
     if len(numbers) == WINDOW:
-        if DEBUG:
-            print(tag, numbers)
+        debug(tag, numbers)
 
         product = reduce(operator.mul, numbers)
         if product > greatest_product:
