@@ -1,4 +1,5 @@
 import itertools
+import os
 from functools import reduce, lru_cache
 from itertools import permutations
 
@@ -77,3 +78,11 @@ def is_palindrome(n):
     n = str(n)
     reverse = n[::-1]
     return n == reverse
+
+
+def debug(*args):
+    """Works as the print() function as long as the DEBUG flag is set, otherwise does nothing
+    """
+
+    if os.environ.get("DEBUG"):
+        print(*args)
