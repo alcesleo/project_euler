@@ -33,6 +33,33 @@ python -m pydoc common.tools
 python -m common.report
 ```
 
+## Guidelines
+
+```python
+"""
+Explain the solution in the module docstring
+"""
+from common.tools import debug
+
+TARGET = 42
+
+
+def solve(limit=8):
+    debug(limit, TARGET)
+
+
+if __name__ == "__main__":
+    result = solve(1_000_000)
+    print(result)
+```
+
+Structuring each solution like this is slightly more cumbersome than simply printing the answer, but gives several benefits:
+
+- Each file can still simply be run to output the result
+- Enables tools like `pydoc` and `doctest` to run without triggering the often expensive `solve()`-function
+- Lets you keep variables from the example to verify the solution as default arguments rather than ugly commented out variables
+- Lets you keep useful debugging output that often explains the solution really well without having ugly commented out `print()`-statements
+
 ## Documentation
 
 Links to relevant Python documentation
