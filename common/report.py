@@ -1,22 +1,22 @@
-import os
-import re
-from timeit import default_timer as timer
+import pkgutil
 from subprocess import run, PIPE
-
-SCRIPT_PATH = os.path.dirname(__file__)
-SOLUTIONS_PATH = os.path.join(SCRIPT_PATH, "../")
+from timeit import default_timer as timer
 
 
-def print_solution(solution_file):
+SOLUTION_PKG = "solutions"
+
+
+def print_solution(module_name):
+    solution_module = f"{SOLUTION_PKG}.{module_name}"
+
     start = timer()
-    result = run(["python", os.path.join(
-        SOLUTIONS_PATH, solution_file)], stdout=PIPE)
+    result = run(["python", "-m", solution_module], stdout=PIPE)
     end = timer()
 
     seconds = end - start
     answer = result.stdout.decode().strip()
 
-    print(f"{solution_file:14} | {seconds:10.6f}s | {answer}")
+    print(f"{module_name:14} | {seconds:10.6f}s | {answer}")
 
 
 def print_headers():
@@ -24,15 +24,9 @@ def print_headers():
     print(f"---------------|-------------|--------------------")
 
 
-def get_solution_files():
-    (_, _, filenames) = next(os.walk(SOLUTIONS_PATH))
-    filenames.sort()
-    return filenames
-
-
 def print_solutions():
-    for solution_file in get_solution_files():
-        print_solution(solution_file)
+    for solution in pkgutil.iter_modules([SOLUTION_PKG]):
+        print_solution(solution.name)
 
 
 def print_report():
