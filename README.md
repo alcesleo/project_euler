@@ -21,6 +21,9 @@ time python solutions/problem_001.py
 
 # Run doctests
 python -m doctest -v solutions/problem_001.py
+
+# Run and benchmark all solutions
+python solutions/common/report.py
 ```
 
 ## Documentation

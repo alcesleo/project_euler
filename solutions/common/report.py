@@ -4,7 +4,7 @@ from timeit import default_timer as timer
 from subprocess import run, PIPE
 
 SCRIPT_PATH = os.path.dirname(__file__)
-SOLUTIONS_PATH = os.path.join(SCRIPT_PATH, "solutions")
+SOLUTIONS_PATH = os.path.join(SCRIPT_PATH, "../")
 
 
 def print_solution(solution_file):
