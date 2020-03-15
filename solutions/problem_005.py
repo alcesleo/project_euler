@@ -1,5 +1,5 @@
 from functools import reduce
-from fractions import gcd
+from math import gcd
 
 LIMIT = 20
 
