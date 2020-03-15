@@ -14,13 +14,21 @@ pipenv shell
 pipenv install
 
 # Run a solution file
-python solutions/problem_001.py
+python solutions/problem_xxx.py
 
 # Benchmark a solution
-time python solutions/problem_001.py
+time python solutions/problem_xxx.py
 
 # Run doctests
-python -m doctest -v solutions/problem_001.py
+python -m doctest -v solutions/problem_xxx.py
+
+# Print more helpful information than the answer
+DEBUG=True python solutions/problem_063.py
+
+# View the documentation for a module
+cd solutions/
+python -m pydoc problem_xxx
+python -m pydoc common.tools
 
 # Run and benchmark all solutions
 python solutions/common/report.py
