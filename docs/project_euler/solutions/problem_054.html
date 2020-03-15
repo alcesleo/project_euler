@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>project_euler.solutions.problem_054 API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>project_euler.solutions.problem_054</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from functools import total_ordering
+from collections import Counter
+from common.data import read_data
+
+
+def read_poker_hands():
+    poker_hands = []
+
+    for cards in read_data(&#34;p054_poker.txt&#34;).splitlines():
+        poker_hands.append((PokerHand(cards[:14]), PokerHand(cards[15:])))
+
+    return poker_hands
+
+
+@total_ordering
+class Card:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; Card(&#34;5H&#34;) &gt; Card(&#34;6C&#34;)
+    False
+
+    &gt;&gt;&gt; Card(&#34;5H&#34;) == Card(&#34;5C&#34;)
+    True
+    &#34;&#34;&#34;
+    CARD_VALUES = {rank: value for value, rank in enumerate(
+        [&#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;T&#34;, &#34;J&#34;, &#34;Q&#34;, &#34;K&#34;, &#34;A&#34;])}
+
+    def __init__(self, card):
+        self.rank, self.suit = card
+
+    def __repr__(self):
+        return f&#34;{self.rank}{self.suit}&#34;
+
+    def __lt__(self, other):
+        return self.value() &lt; other.value()
+
+    def __eq__(self, other):
+        return self.value() == other.value()
+
+    def __hash__(self):
+        return hash(self.value())
+
+    def value(self):
+        return self.CARD_VALUES[self.rank]
+
+
+@total_ordering
+class Rank:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;))
+    HIGH_CARD (5H)
+
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;)) == Rank(&#34;HIGH_CARD&#34;, Card(&#34;5C&#34;))
+    True
+
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;)) &gt; Rank(&#34;PAIR&#34;, Card(&#34;3C&#34;))
+    False
+    &#34;&#34;&#34;
+    RANK_VALUES = {rank: value for value, rank in enumerate([
+        &#34;HIGH_CARD&#34;, &#34;PAIR&#34;, &#34;TWO_PAIR&#34;, &#34;THREE&#34;, &#34;STRAIGHT&#34;, &#34;FLUSH&#34;, &#34;FULL_HOUSE&#34;, &#34;STRAIGHT_FLUSH&#34;, &#34;ROYAL_FLUSH&#34;])}
+
+    def __init__(self, rank, high_card):
+        self.rank = rank
+        self.high_card = high_card
+
+    def __eq__(self, other):
+        return self.rank == other.rank and self.high_card == other.high_card
+
+    def __lt__(self, other):
+        if self.rank != other.rank:
+            return self.value() &lt; other.value()
+
+        return self.high_card &lt; other.high_card
+
+    def __repr__(self):
+        return f&#34;{self.rank} ({self.high_card})&#34;
+
+    def value(self):
+        return self.RANK_VALUES[self.rank]
+
+
+class PokerHand:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;).high_card()
+    KD
+
+
+    # Ranking hands
+    &gt;&gt;&gt; PokerHand(&#34;5D 8C 9S JS AC&#34;).rank()
+    HIGH_CARD (AC)
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;).rank()
+    PAIR (5H)
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S 7D&#34;).rank()
+    TWO_PAIR (7S)
+
+    &gt;&gt;&gt; PokerHand(&#34;2D 9C AS AH AC&#34;).rank()
+    THREE (AS)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 4D 5S 6S 7D&#34;).rank()
+    STRAIGHT (7D)
+
+    &gt;&gt;&gt; PokerHand(&#34;3D 6D 7D TD QD&#34;).rank()
+    FLUSH (QD)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 3D 3S 9S 9D&#34;).rank()
+    FULL_HOUSE (3C)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 4C 5C 6C 7C&#34;).rank()
+    STRAIGHT_FLUSH (7C)
+
+    &gt;&gt;&gt; PokerHand(&#34;TH JH QH KH AH&#34;).rank()
+    ROYAL_FLUSH (AH)
+
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;) &gt; (PokerHand(&#34;2C 3S 8S 8D TD&#34;)) # PAIR 5 / PAIR 8
+    False
+
+    &gt;&gt;&gt; PokerHand(&#34;5D 8C 9S JS AC&#34;) &gt; (PokerHand(&#34;2C 5C 7D 8S QH&#34;)) # HIGH_CARD A / HIGH_CARD Q
+    True
+
+    &gt;&gt;&gt; PokerHand(&#34;2D 9C AS AH AC&#34;) &gt; (PokerHand(&#34;3D 6D 7D TD QD&#34;)) # THREE A / FLUSH Q
+    False
+
+    &gt;&gt;&gt; PokerHand(&#34;4D 6S 9H QH QC&#34;) &gt; (PokerHand(&#34;3D 6D 7H QD QS&#34;)) # PAIR Q (HIGH_CARD A) / PAIR Q (HIGH_CARD 7)
+    True
+
+    &gt;&gt;&gt; PokerHand(&#34;2H 2D 4C 4D 4S&#34;) &gt; (PokerHand(&#34;3C 3D 3S 9S 9D&#34;)) # FULL_HOUSE 4 / FULL_HOUSE 3
+    True
+    &#34;&#34;&#34;
+
+    def __init__(self, cards):
+        self.cards = sorted([Card(c) for c in cards.split(&#34; &#34;)], reverse=True)
+
+    def high_card(self):
+        return self.cards[0]
+
+    def is_flush(self):
+        suits = [c.suit for c in self.cards]
+        return len(set(suits)) == 1
+
+    def is_straight(self):
+        values = [c.value() for c in self.cards]
+        return sorted(values) == list(range(min(values), max(values) + 1))
+
+    def is_royal(self):
+        ranks = [c.rank for c in self.cards]
+        return set(ranks) == {&#34;T&#34;, &#34;J&#34;, &#34;Q&#34;, &#34;K&#34;, &#34;A&#34;}
+
+    def rank(self):
+        same_value = Counter(self.cards).most_common()
+        card, card_count = same_value[0]
+        second_card, second_card_count = same_value[1]
+
+        if self.is_straight() and self.is_flush() and self.is_royal():
+            return Rank(&#34;ROYAL_FLUSH&#34;, self.high_card())
+
+        if self.is_straight() and self.is_flush():
+            return Rank(&#34;STRAIGHT_FLUSH&#34;, self.high_card())
+
+        if card_count == 4:
+            return Rank(&#34;FOUR&#34;, card)
+
+        if card_count == 3 and second_card_count == 2:
+            return Rank(&#34;FULL_HOUSE&#34;, card)
+
+        if self.is_flush():
+            return Rank(&#34;FLUSH&#34;, self.high_card())
+
+        if self.is_straight():
+            return Rank(&#34;STRAIGHT&#34;, self.high_card())
+
+        if card_count == 3:
+            return Rank(&#34;THREE&#34;, card)
+
+        if card_count == 2 and second_card_count == 2:
+            return Rank(&#34;TWO_PAIR&#34;, max(card, second_card))
+
+        if card_count == 2:
+            return Rank(&#34;PAIR&#34;, card)
+
+        return Rank(&#34;HIGH_CARD&#34;, self.high_card())
+
+    def __gt__(self, other):
+        if self.rank() != other.rank():
+            return self.rank() &gt; other.rank()
+
+        for c1, c2 in zip(self.cards, other.cards):
+            if c1 != c2:
+                return c1 &gt; c2
+
+
+def solve():
+    player1_wins = 0
+    for player1, player2 in read_poker_hands():
+        if player1 &gt; player2:
+            player1_wins += 1
+
+    return player1_wins
+
+
+print(solve())</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="project_euler.solutions.problem_054.read_poker_hands"><code class="name flex">
+<span>def <span class="ident">read_poker_hands</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read_poker_hands():
+    poker_hands = []
+
+    for cards in read_data(&#34;p054_poker.txt&#34;).splitlines():
+        poker_hands.append((PokerHand(cards[:14]), PokerHand(cards[15:])))
+
+    return poker_hands</code></pre>
+</details>
+</dd>
+<dt id="project_euler.solutions.problem_054.solve"><code class="name flex">
+<span>def <span class="ident">solve</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def solve():
+    player1_wins = 0
+    for player1, player2 in read_poker_hands():
+        if player1 &gt; player2:
+            player1_wins += 1
+
+    return player1_wins</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="project_euler.solutions.problem_054.Card"><code class="flex name class">
+<span>class <span class="ident">Card</span></span>
+<span>(</span><span>card)</span>
+</code></dt>
+<dd>
+<section class="desc"><pre><code>&gt;&gt;&gt; Card("5H") &gt; Card("6C")
+False
+
+&gt;&gt;&gt; Card("5H") == Card("5C")
+True
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Card:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; Card(&#34;5H&#34;) &gt; Card(&#34;6C&#34;)
+    False
+
+    &gt;&gt;&gt; Card(&#34;5H&#34;) == Card(&#34;5C&#34;)
+    True
+    &#34;&#34;&#34;
+    CARD_VALUES = {rank: value for value, rank in enumerate(
+        [&#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;T&#34;, &#34;J&#34;, &#34;Q&#34;, &#34;K&#34;, &#34;A&#34;])}
+
+    def __init__(self, card):
+        self.rank, self.suit = card
+
+    def __repr__(self):
+        return f&#34;{self.rank}{self.suit}&#34;
+
+    def __lt__(self, other):
+        return self.value() &lt; other.value()
+
+    def __eq__(self, other):
+        return self.value() == other.value()
+
+    def __hash__(self):
+        return hash(self.value())
+
+    def value(self):
+        return self.CARD_VALUES[self.rank]</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="project_euler.solutions.problem_054.Card.CARD_VALUES"><code class="name">var <span class="ident">CARD_VALUES</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="project_euler.solutions.problem_054.Card.value"><code class="name flex">
+<span>def <span class="ident">value</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def value(self):
+    return self.CARD_VALUES[self.rank]</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="project_euler.solutions.problem_054.PokerHand"><code class="flex name class">
+<span>class <span class="ident">PokerHand</span></span>
+<span>(</span><span>cards)</span>
+</code></dt>
+<dd>
+<section class="desc"><pre><code>&gt;&gt;&gt; PokerHand("5H 5C 6S 7S KD").high_card()
+KD
+</code></pre>
+<h1 id="ranking-hands">Ranking hands</h1>
+<pre><code>&gt;&gt;&gt; PokerHand("5D 8C 9S JS AC").rank()
+HIGH_CARD (AC)
+
+&gt;&gt;&gt; PokerHand("5H 5C 6S 7S KD").rank()
+PAIR (5H)
+
+&gt;&gt;&gt; PokerHand("5H 5C 6S 7S 7D").rank()
+TWO_PAIR (7S)
+
+&gt;&gt;&gt; PokerHand("2D 9C AS AH AC").rank()
+THREE (AS)
+
+&gt;&gt;&gt; PokerHand("3C 4D 5S 6S 7D").rank()
+STRAIGHT (7D)
+
+&gt;&gt;&gt; PokerHand("3D 6D 7D TD QD").rank()
+FLUSH (QD)
+
+&gt;&gt;&gt; PokerHand("3C 3D 3S 9S 9D").rank()
+FULL_HOUSE (3C)
+
+&gt;&gt;&gt; PokerHand("3C 4C 5C 6C 7C").rank()
+STRAIGHT_FLUSH (7C)
+
+&gt;&gt;&gt; PokerHand("TH JH QH KH AH").rank()
+ROYAL_FLUSH (AH)
+
+
+
+
+
+&gt;&gt;&gt; PokerHand("5H 5C 6S 7S KD") &gt; (PokerHand("2C 3S 8S 8D TD")) # PAIR 5 / PAIR 8
+False
+
+&gt;&gt;&gt; PokerHand("5D 8C 9S JS AC") &gt; (PokerHand("2C 5C 7D 8S QH")) # HIGH_CARD A / HIGH_CARD Q
+True
+
+&gt;&gt;&gt; PokerHand("2D 9C AS AH AC") &gt; (PokerHand("3D 6D 7D TD QD")) # THREE A / FLUSH Q
+False
+
+&gt;&gt;&gt; PokerHand("4D 6S 9H QH QC") &gt; (PokerHand("3D 6D 7H QD QS")) # PAIR Q (HIGH_CARD A) / PAIR Q (HIGH_CARD 7)
+True
+
+&gt;&gt;&gt; PokerHand("2H 2D 4C 4D 4S") &gt; (PokerHand("3C 3D 3S 9S 9D")) # FULL_HOUSE 4 / FULL_HOUSE 3
+True
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PokerHand:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;).high_card()
+    KD
+
+
+    # Ranking hands
+    &gt;&gt;&gt; PokerHand(&#34;5D 8C 9S JS AC&#34;).rank()
+    HIGH_CARD (AC)
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;).rank()
+    PAIR (5H)
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S 7D&#34;).rank()
+    TWO_PAIR (7S)
+
+    &gt;&gt;&gt; PokerHand(&#34;2D 9C AS AH AC&#34;).rank()
+    THREE (AS)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 4D 5S 6S 7D&#34;).rank()
+    STRAIGHT (7D)
+
+    &gt;&gt;&gt; PokerHand(&#34;3D 6D 7D TD QD&#34;).rank()
+    FLUSH (QD)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 3D 3S 9S 9D&#34;).rank()
+    FULL_HOUSE (3C)
+
+    &gt;&gt;&gt; PokerHand(&#34;3C 4C 5C 6C 7C&#34;).rank()
+    STRAIGHT_FLUSH (7C)
+
+    &gt;&gt;&gt; PokerHand(&#34;TH JH QH KH AH&#34;).rank()
+    ROYAL_FLUSH (AH)
+
+
+    &gt;&gt;&gt; PokerHand(&#34;5H 5C 6S 7S KD&#34;) &gt; (PokerHand(&#34;2C 3S 8S 8D TD&#34;)) # PAIR 5 / PAIR 8
+    False
+
+    &gt;&gt;&gt; PokerHand(&#34;5D 8C 9S JS AC&#34;) &gt; (PokerHand(&#34;2C 5C 7D 8S QH&#34;)) # HIGH_CARD A / HIGH_CARD Q
+    True
+
+    &gt;&gt;&gt; PokerHand(&#34;2D 9C AS AH AC&#34;) &gt; (PokerHand(&#34;3D 6D 7D TD QD&#34;)) # THREE A / FLUSH Q
+    False
+
+    &gt;&gt;&gt; PokerHand(&#34;4D 6S 9H QH QC&#34;) &gt; (PokerHand(&#34;3D 6D 7H QD QS&#34;)) # PAIR Q (HIGH_CARD A) / PAIR Q (HIGH_CARD 7)
+    True
+
+    &gt;&gt;&gt; PokerHand(&#34;2H 2D 4C 4D 4S&#34;) &gt; (PokerHand(&#34;3C 3D 3S 9S 9D&#34;)) # FULL_HOUSE 4 / FULL_HOUSE 3
+    True
+    &#34;&#34;&#34;
+
+    def __init__(self, cards):
+        self.cards = sorted([Card(c) for c in cards.split(&#34; &#34;)], reverse=True)
+
+    def high_card(self):
+        return self.cards[0]
+
+    def is_flush(self):
+        suits = [c.suit for c in self.cards]
+        return len(set(suits)) == 1
+
+    def is_straight(self):
+        values = [c.value() for c in self.cards]
+        return sorted(values) == list(range(min(values), max(values) + 1))
+
+    def is_royal(self):
+        ranks = [c.rank for c in self.cards]
+        return set(ranks) == {&#34;T&#34;, &#34;J&#34;, &#34;Q&#34;, &#34;K&#34;, &#34;A&#34;}
+
+    def rank(self):
+        same_value = Counter(self.cards).most_common()
+        card, card_count = same_value[0]
+        second_card, second_card_count = same_value[1]
+
+        if self.is_straight() and self.is_flush() and self.is_royal():
+            return Rank(&#34;ROYAL_FLUSH&#34;, self.high_card())
+
+        if self.is_straight() and self.is_flush():
+            return Rank(&#34;STRAIGHT_FLUSH&#34;, self.high_card())
+
+        if card_count == 4:
+            return Rank(&#34;FOUR&#34;, card)
+
+        if card_count == 3 and second_card_count == 2:
+            return Rank(&#34;FULL_HOUSE&#34;, card)
+
+        if self.is_flush():
+            return Rank(&#34;FLUSH&#34;, self.high_card())
+
+        if self.is_straight():
+            return Rank(&#34;STRAIGHT&#34;, self.high_card())
+
+        if card_count == 3:
+            return Rank(&#34;THREE&#34;, card)
+
+        if card_count == 2 and second_card_count == 2:
+            return Rank(&#34;TWO_PAIR&#34;, max(card, second_card))
+
+        if card_count == 2:
+            return Rank(&#34;PAIR&#34;, card)
+
+        return Rank(&#34;HIGH_CARD&#34;, self.high_card())
+
+    def __gt__(self, other):
+        if self.rank() != other.rank():
+            return self.rank() &gt; other.rank()
+
+        for c1, c2 in zip(self.cards, other.cards):
+            if c1 != c2:
+                return c1 &gt; c2</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="project_euler.solutions.problem_054.PokerHand.high_card"><code class="name flex">
+<span>def <span class="ident">high_card</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def high_card(self):
+    return self.cards[0]</code></pre>
+</details>
+</dd>
+<dt id="project_euler.solutions.problem_054.PokerHand.is_flush"><code class="name flex">
+<span>def <span class="ident">is_flush</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_flush(self):
+    suits = [c.suit for c in self.cards]
+    return len(set(suits)) == 1</code></pre>
+</details>
+</dd>
+<dt id="project_euler.solutions.problem_054.PokerHand.is_royal"><code class="name flex">
+<span>def <span class="ident">is_royal</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_royal(self):
+    ranks = [c.rank for c in self.cards]
+    return set(ranks) == {&#34;T&#34;, &#34;J&#34;, &#34;Q&#34;, &#34;K&#34;, &#34;A&#34;}</code></pre>
+</details>
+</dd>
+<dt id="project_euler.solutions.problem_054.PokerHand.is_straight"><code class="name flex">
+<span>def <span class="ident">is_straight</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_straight(self):
+    values = [c.value() for c in self.cards]
+    return sorted(values) == list(range(min(values), max(values) + 1))</code></pre>
+</details>
+</dd>
+<dt id="project_euler.solutions.problem_054.PokerHand.rank"><code class="name flex">
+<span>def <span class="ident">rank</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rank(self):
+    same_value = Counter(self.cards).most_common()
+    card, card_count = same_value[0]
+    second_card, second_card_count = same_value[1]
+
+    if self.is_straight() and self.is_flush() and self.is_royal():
+        return Rank(&#34;ROYAL_FLUSH&#34;, self.high_card())
+
+    if self.is_straight() and self.is_flush():
+        return Rank(&#34;STRAIGHT_FLUSH&#34;, self.high_card())
+
+    if card_count == 4:
+        return Rank(&#34;FOUR&#34;, card)
+
+    if card_count == 3 and second_card_count == 2:
+        return Rank(&#34;FULL_HOUSE&#34;, card)
+
+    if self.is_flush():
+        return Rank(&#34;FLUSH&#34;, self.high_card())
+
+    if self.is_straight():
+        return Rank(&#34;STRAIGHT&#34;, self.high_card())
+
+    if card_count == 3:
+        return Rank(&#34;THREE&#34;, card)
+
+    if card_count == 2 and second_card_count == 2:
+        return Rank(&#34;TWO_PAIR&#34;, max(card, second_card))
+
+    if card_count == 2:
+        return Rank(&#34;PAIR&#34;, card)
+
+    return Rank(&#34;HIGH_CARD&#34;, self.high_card())</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="project_euler.solutions.problem_054.Rank"><code class="flex name class">
+<span>class <span class="ident">Rank</span></span>
+<span>(</span><span>rank, high_card)</span>
+</code></dt>
+<dd>
+<section class="desc"><pre><code>&gt;&gt;&gt; Rank("HIGH_CARD", Card("5H"))
+HIGH_CARD (5H)
+
+&gt;&gt;&gt; Rank("HIGH_CARD", Card("5H")) == Rank("HIGH_CARD", Card("5C"))
+True
+
+&gt;&gt;&gt; Rank("HIGH_CARD", Card("5H")) &gt; Rank("PAIR", Card("3C"))
+False
+</code></pre></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Rank:
+    &#34;&#34;&#34;
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;))
+    HIGH_CARD (5H)
+
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;)) == Rank(&#34;HIGH_CARD&#34;, Card(&#34;5C&#34;))
+    True
+
+    &gt;&gt;&gt; Rank(&#34;HIGH_CARD&#34;, Card(&#34;5H&#34;)) &gt; Rank(&#34;PAIR&#34;, Card(&#34;3C&#34;))
+    False
+    &#34;&#34;&#34;
+    RANK_VALUES = {rank: value for value, rank in enumerate([
+        &#34;HIGH_CARD&#34;, &#34;PAIR&#34;, &#34;TWO_PAIR&#34;, &#34;THREE&#34;, &#34;STRAIGHT&#34;, &#34;FLUSH&#34;, &#34;FULL_HOUSE&#34;, &#34;STRAIGHT_FLUSH&#34;, &#34;ROYAL_FLUSH&#34;])}
+
+    def __init__(self, rank, high_card):
+        self.rank = rank
+        self.high_card = high_card
+
+    def __eq__(self, other):
+        return self.rank == other.rank and self.high_card == other.high_card
+
+    def __lt__(self, other):
+        if self.rank != other.rank:
+            return self.value() &lt; other.value()
+
+        return self.high_card &lt; other.high_card
+
+    def __repr__(self):
+        return f&#34;{self.rank} ({self.high_card})&#34;
+
+    def value(self):
+        return self.RANK_VALUES[self.rank]</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="project_euler.solutions.problem_054.Rank.RANK_VALUES"><code class="name">var <span class="ident">RANK_VALUES</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="project_euler.solutions.problem_054.Rank.value"><code class="name flex">
+<span>def <span class="ident">value</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def value(self):
+    return self.RANK_VALUES[self.rank]</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="project_euler.solutions" href="index.html">project_euler.solutions</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="project_euler.solutions.problem_054.read_poker_hands" href="#project_euler.solutions.problem_054.read_poker_hands">read_poker_hands</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.solve" href="#project_euler.solutions.problem_054.solve">solve</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="project_euler.solutions.problem_054.Card" href="#project_euler.solutions.problem_054.Card">Card</a></code></h4>
+<ul class="">
+<li><code><a title="project_euler.solutions.problem_054.Card.CARD_VALUES" href="#project_euler.solutions.problem_054.Card.CARD_VALUES">CARD_VALUES</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.Card.value" href="#project_euler.solutions.problem_054.Card.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="project_euler.solutions.problem_054.PokerHand" href="#project_euler.solutions.problem_054.PokerHand">PokerHand</a></code></h4>
+<ul class="">
+<li><code><a title="project_euler.solutions.problem_054.PokerHand.high_card" href="#project_euler.solutions.problem_054.PokerHand.high_card">high_card</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.PokerHand.is_flush" href="#project_euler.solutions.problem_054.PokerHand.is_flush">is_flush</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.PokerHand.is_royal" href="#project_euler.solutions.problem_054.PokerHand.is_royal">is_royal</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.PokerHand.is_straight" href="#project_euler.solutions.problem_054.PokerHand.is_straight">is_straight</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.PokerHand.rank" href="#project_euler.solutions.problem_054.PokerHand.rank">rank</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="project_euler.solutions.problem_054.Rank" href="#project_euler.solutions.problem_054.Rank">Rank</a></code></h4>
+<ul class="">
+<li><code><a title="project_euler.solutions.problem_054.Rank.RANK_VALUES" href="#project_euler.solutions.problem_054.Rank.RANK_VALUES">RANK_VALUES</a></code></li>
+<li><code><a title="project_euler.solutions.problem_054.Rank.value" href="#project_euler.solutions.problem_054.Rank.value">value</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
