@@ -1,7 +1,7 @@
 import itertools
 from common.data import read_strs
-from problem_022 import alphabetical_value
-from problem_012 import gen_triangle_numbers
+from solutions.problem_022 import alphabetical_value
+from solutions.problem_012 import gen_triangle_numbers
 
 words = read_strs("p042_words.txt")
 
