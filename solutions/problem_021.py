@@ -3,6 +3,7 @@ from common.tools import proper_divisors
 
 LIMIT = 10_000
 
+
 @lru_cache(maxsize=LIMIT)
 def sum_proper_divisors(n):
     return sum(proper_divisors(n))

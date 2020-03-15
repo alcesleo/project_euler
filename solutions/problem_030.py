@@ -1,5 +1,4 @@
 from common.tools import split_digits
-import itertools
 
 
 def sum_of_digits_raised(n, power):

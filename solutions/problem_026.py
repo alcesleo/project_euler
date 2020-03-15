@@ -1,11 +1,13 @@
+"""
+The number of recurring decimals is always less than the denominator
+
+https://en.wikipedia.org/wiki/Repeating_decimal
+https://www.youtube.com/watch?v=rVhU8Vyhz7c
+"""
+
+import decimal
 from common.tools import factors
 from common.primes import is_prime
-import decimal
-
-# https://en.wikipedia.org/wiki/Repeating_decimal
-# https://www.youtube.com/watch?v=rVhU8Vyhz7c
-
-# The number of recurring decimals is always less than the denominator
 
 LIMIT = 1000
 NUMERATOR = 1

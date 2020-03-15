@@ -1,6 +1,3 @@
-import itertools
-
-
 def gen_collatz(start):
     n = start
 

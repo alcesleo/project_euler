@@ -1,6 +1,3 @@
-import itertools
-
-
 def gen_fibonacci():
     a, b = 1, 1
 

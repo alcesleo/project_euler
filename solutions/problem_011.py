@@ -1,7 +1,6 @@
-import numpy as np
 import operator
 from functools import reduce
-
+import numpy as np
 from common.tools import debug
 
 INPUT = """

@@ -1,5 +1,4 @@
 import itertools
-from functools import reduce
 from common.tools import factors
 
 LIMIT = 500

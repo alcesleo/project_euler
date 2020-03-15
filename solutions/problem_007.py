@@ -1,4 +1,3 @@
-import itertools
 from common.primes import gen_primes
 from common.tools import nth
 

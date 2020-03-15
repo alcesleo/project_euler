@@ -1,4 +1,3 @@
-import itertools
 from common.tools import nth
 
 # http://www.robertdickau.com/manhattan.html

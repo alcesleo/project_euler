@@ -1,6 +1,7 @@
+import numpy as np
 from common.data import read_data
 from common.tools import split_digits, join_digits, debug
-import numpy as np
+
 
 SIZE = 9
 NUMBERS = set(range(1, 10))

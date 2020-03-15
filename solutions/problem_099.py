@@ -1,6 +1,5 @@
-from common.data import read_data
-from common.tools import join_digits
 from math import log
+from common.data import read_data
 
 data = read_data("p099_base_exp.txt")
 
