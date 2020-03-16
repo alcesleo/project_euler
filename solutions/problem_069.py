@@ -1,25 +1,4 @@
-def phi(n):
-    """Returns the Euler's Totient of n, i.e. the number of relative primes to n below n.
-
-    https://www.geeksforgeeks.org/eulers-totient-function/
-    """
-    # Initialize result as n
-    result = n
-    p = 2
-
-    while(p * p <= n):
-        if (n % p == 0):
-            while (n % p == 0):
-                n //= p
-
-            result -= result // p
-
-        p += 1
-
-    if (n > 1):
-        result -= result // n
-
-    return result
+from common.tools import phi
 
 
 def solve(limit=10):

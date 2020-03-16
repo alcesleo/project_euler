@@ -37,6 +37,29 @@ def proper_divisors(n):
     return factors(n) - {n}
 
 
+def phi(n):
+    """Returns the Euler's Totient of n, i.e. the number of relative primes to n below n.
+
+    https://www.geeksforgeeks.org/eulers-totient-function/
+    """
+    result = n
+    p = 2
+
+    while(p * p <= n):
+        if (n % p == 0):
+            while (n % p == 0):
+                n //= p
+
+            result -= result // p
+
+        p += 1
+
+    if (n > 1):
+        result -= result // n
+
+    return result
+
+
 def split_digits(n):
     """Returns a list of the digits in n
 
