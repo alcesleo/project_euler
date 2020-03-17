@@ -1,16 +1,6 @@
 import itertools
 
-
-def triangle(n):
-    return n * (n + 1) // 2
-
-
-def pentagonal(n):
-    return n * (3 * n - 1) // 2
-
-
-def hexagonal(n):
-    return n * (2 * n - 1)
+from common.polygonal import triangle, pentagonal, hexagonal
 
 
 def to_generator(fn):
@@ -19,6 +9,11 @@ def to_generator(fn):
 
 
 def in_sequence_factory(generator):
+    """Returns a function given a generator which is assumed to return increasing numbers.
+
+    The function returns whether n is a member of the generator,
+    generating only as many numbers from the generator needed to answer the question.
+    """
     found = set()
     highest = 0
 

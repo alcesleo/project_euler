@@ -1,8 +1,5 @@
 import itertools
-
-
-def pentagonal(n):
-    return n * (3 * n - 1) / 2
+from common.polygonal import pentagonal
 
 
 def gen_pentagonal():
@@ -14,7 +11,13 @@ limit = 10000
 p = list(itertools.islice(gen_pentagonal(), limit))
 ps = set(p)
 
-for j in range(1, limit):
-    for k in range(j, limit):
-        if p[k] - p[j] in ps and p[k] + p[j] in ps:
-            print(p[k] - p[j])
+
+def solve():
+    for j in range(1, limit):
+        for k in range(j, limit):
+            if p[k] - p[j] in ps and p[k] + p[j] in ps:
+                return p[k] - p[j]
+
+
+if __name__ == "__main__":
+    print(solve())
