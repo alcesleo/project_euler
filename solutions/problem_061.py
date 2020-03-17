@@ -43,7 +43,6 @@ def extend_chains(chains, candidates, match_length=2):
         last_two = chain[-match_length:]
 
         for candidate in candidates:
-            candidate = str(candidate)
             first_two = candidate[:match_length]
 
             if last_two == first_two:
@@ -52,7 +51,7 @@ def extend_chains(chains, candidates, match_length=2):
     return result
 
 
-def find_cycle(polygons):
+def find_chain(polygons):
     """Finds all chains which wrap around by calling extend_chains for all polygons in order
     """
     chains = polygons.pop(0)
@@ -62,12 +61,18 @@ def find_cycle(polygons):
         if not chains:
             break
 
-    return list(filter(lambda c: c[:2] == c[-2::], chains))
+    return list(filter(wraps_around, chains))
+
+
+def wraps_around(n, match_length=2):
+    """Returns whether the last digits of n are the same as the first
+    """
+    return n[:match_length] == n[-match_length:]
 
 
 def solve(polygons):
     for p in itertools.permutations(polygons):
-        cycle = find_cycle(list(p))
+        cycle = find_chain(list(p))
 
         if cycle:
             return split_sum(cycle[0])
