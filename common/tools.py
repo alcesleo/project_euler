@@ -113,6 +113,13 @@ def is_palindrome(n):
     return n == reverse
 
 
+def to_generator(fn, start=1):
+    """Given a function fn that takes an int n, returns a generator that counts up fn of n
+    """
+    for i in itertools.count(start):
+        yield(fn(i))
+
+
 def debug(*args):
     """Works as the print() function as long as the DEBUG flag is set, otherwise does nothing
     """

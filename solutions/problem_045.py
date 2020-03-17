@@ -1,11 +1,7 @@
 import itertools
 
 from common.polygonal import triangle, pentagonal, hexagonal
-
-
-def to_generator(fn):
-    for i in itertools.count(1):
-        yield(fn(i))
+from common.tools import to_generator
 
 
 def in_sequence_factory(generator):

@@ -8,11 +8,7 @@ Working with strings is easier here since we don't actually use any numerical op
 import itertools
 import textwrap
 from common import polygonal
-
-
-def to_generator(fn):
-    for i in itertools.count(1):
-        yield(fn(i))
+from common.tools import to_generator
 
 
 def ibetween(iterable, lower, upper):
