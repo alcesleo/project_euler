@@ -8,20 +8,7 @@ Working with strings is easier here since we don't actually use any numerical op
 import itertools
 import textwrap
 from common import polygonal
-from common.tools import to_generator
-
-
-def ibetween(iterable, lower, upper):
-    """Much like itertools.islice, but with values rather than indexes
-
-    >>> list(ibetween(itertools.count(), 5, 10))
-    [5, 6, 7, 8, 9]
-    """
-    return itertools.takewhile(
-        lambda p: p < upper,
-        itertools.dropwhile(
-            lambda p: p < lower,
-            iterable))
+from common.tools import to_generator, ibetween
 
 
 def four_digits(fn):

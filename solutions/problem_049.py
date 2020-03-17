@@ -1,6 +1,6 @@
-from itertools import takewhile, dropwhile, combinations
+from itertools import combinations
 from common.primes import gen_primes
-from common.tools import join_digits, digit_permutations
+from common.tools import join_digits, digit_permutations, ibetween
 
 
 def difference_list(l):
@@ -30,8 +30,7 @@ EXCLUDE = 148748178147
 
 
 def solve():
-    four_digit_primes = set(takewhile(lambda p: p < UPPER,
-                                      dropwhile(lambda p: p < LOWER, gen_primes())))
+    four_digit_primes = set(ibetween(gen_primes(), LOWER, UPPER))
 
     for prime in four_digit_primes:
         prime_permutations = digit_permutations(prime) & four_digit_primes
