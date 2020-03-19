@@ -26,7 +26,7 @@ def factors(n):
 
 @lru_cache(maxsize=2048)
 def partitions(n, numbers=None):
-    """Returns the amount of partitions of n into a set of numbers
+    """Returns the amount of partitions of n into numbers, a tuple sorted from biggest to smallest
     """
     if numbers == None:
         numbers = tuple(reversed(range(1, n + 1)))
