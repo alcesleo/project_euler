@@ -82,12 +82,15 @@ def join_digits(d):
 
 
 def digit_permutations(n):
-    """Returns all permutations of digits of n
+    """Returns all permutations of digits of n, ignoring leading zeros
 
     >>> digit_permutations(123)
     {321, 132, 231, 213, 312, 123}
+
+    >>> digit_permutations(100)
+    {100}
     """
-    return set(map(join_digits, permutations(split_digits(n))))
+    return set(map(join_digits, filter(lambda p: p[0] != 0, permutations(split_digits(n)))))
 
 
 def nth(iterable, index):
