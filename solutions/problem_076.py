@@ -11,6 +11,6 @@ up to the task of this problem as well.
 *The only difference from p(100) and the answer to problem 31 being that _at least 2_ numbers are used, and n itself is not counted.
 """
 
-from solutions.problem_031 import partitions
+from common.tools import partitions
 
 print(partitions(100) - 1)
