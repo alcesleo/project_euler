@@ -1,6 +1,6 @@
 from itertools import permutations
 from common.primes import is_prime
-from common.tools import join_digits
+from common.digits import join_digits
 
 largest_pandigital_prime = 0
 

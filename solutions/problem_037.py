@@ -1,5 +1,5 @@
 from common.primes import gen_primes, is_prime
-from common.tools import split_digits, join_digits
+from common.digits import split_digits, join_digits
 
 EXCLUDE = {2, 3, 5, 7}
 

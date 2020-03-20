@@ -1,4 +1,4 @@
-from common.tools import is_palindrome
+from common.math import is_palindrome
 
 largest_palindrome = 0
 

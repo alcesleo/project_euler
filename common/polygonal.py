@@ -1,3 +1,7 @@
+"""Implementations of the formulas for polygonal numbers
+"""
+
+
 def triangle(n):
     """Returns the nth triangle number
 

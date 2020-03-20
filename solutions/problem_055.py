@@ -1,4 +1,5 @@
-from common.tools import split_digits, join_digits, is_palindrome
+from common.digits import split_digits, join_digits
+from common.math import is_palindrome
 
 LIMIT = 10_000
 

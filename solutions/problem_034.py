@@ -1,5 +1,5 @@
 from math import factorial
-from common.tools import split_digits
+from common.digits import split_digits
 
 
 def digit_factorial(n):

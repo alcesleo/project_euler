@@ -1,3 +1,6 @@
+"""Runs and benchmarks all solutions and outputs a report as a table
+"""
+
 import pkgutil
 from subprocess import run, PIPE
 from timeit import default_timer as timer

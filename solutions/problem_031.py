@@ -1,5 +1,4 @@
-from functools import lru_cache
-from common.tools import partitions
+from common.math import partitions
 
 
 def solve():

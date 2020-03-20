@@ -1,4 +1,4 @@
-from common.tools import partitions
+from common.math import partitions
 from common.primes import gen_primes
 
 

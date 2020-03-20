@@ -1,5 +1,5 @@
 from itertools import count
-from common.tools import split_digits
+from common.digits import split_digits
 
 for i in count(1):
     if set(split_digits(i)) == \

@@ -1,6 +1,7 @@
 import numpy as np
 from common.data import read_data
-from common.tools import split_digits, join_digits, debug
+from common.digits import split_digits, join_digits
+from common.tools import debug
 
 
 SIZE = 9

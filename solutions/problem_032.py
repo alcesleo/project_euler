@@ -1,4 +1,4 @@
-from common.tools import split_digits
+from common.digits import split_digits
 
 DIGITS = set(range(1, 10))
 

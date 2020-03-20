@@ -1,3 +1,6 @@
+"""Functions for working efficiently with primes
+"""
+
 import itertools
 
 

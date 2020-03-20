@@ -1,6 +1,7 @@
 from itertools import combinations
 from common.primes import gen_primes
-from common.tools import join_digits, digit_permutations, ibetween
+from common.digits import join_digits, digit_permutations
+from common.tools import ibetween
 
 
 def difference_list(l):

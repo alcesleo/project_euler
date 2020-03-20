@@ -1,5 +1,5 @@
 from functools import lru_cache
-from common.tools import split_digits
+from common.digits import split_digits
 
 
 def next_number(n):

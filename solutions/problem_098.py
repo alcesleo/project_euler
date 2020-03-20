@@ -1,7 +1,7 @@
 from itertools import permutations
 from collections import defaultdict
 from common.data import read_strs
-from common.tools import join_digits
+from common.digits import join_digits
 
 
 def find_anagrams(words):

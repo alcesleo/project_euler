@@ -1,5 +1,5 @@
 import itertools
-from common.tools import proper_divisors
+from common.math import proper_divisors
 
 LIMIT = 28123
 

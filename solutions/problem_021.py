@@ -1,5 +1,5 @@
 from functools import lru_cache
-from common.tools import proper_divisors
+from common.math import proper_divisors
 
 LIMIT = 10_000
 

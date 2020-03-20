@@ -1,5 +1,5 @@
 from collections import Counter
-from common.tools import split_digits
+from common.digits import split_digits
 
 PANDIGITAL = Counter(range(1, 10))
 

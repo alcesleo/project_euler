@@ -3,7 +3,7 @@ from collections import defaultdict
 import math
 
 from common.primes import gen_primes, is_prime
-from common.tools import join_digits
+from common.digits import join_digits
 
 
 def concatenates_to_prime(a, b):

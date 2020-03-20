@@ -1,5 +1,5 @@
 import itertools
-from common.tools import factors
+from common.math import factors
 
 LIMIT = 500
 

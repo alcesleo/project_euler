@@ -2,7 +2,7 @@
 The amount of fractions for each n is the Euler's Totient
 """
 
-from common.tools import phi
+from common.math import phi
 
 
 def solve(limit=8):

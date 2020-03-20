@@ -6,7 +6,7 @@ https://www.youtube.com/watch?v=rVhU8Vyhz7c
 """
 
 import decimal
-from common.tools import factors
+from common.math import factors
 from common.primes import is_prime
 
 LIMIT = 1000

@@ -1,7 +1,8 @@
 from functools import reduce
 from operator import mul
 from itertools import count
-from common.tools import split_digits, nth
+from common.digits import split_digits
+from common.tools import nth
 
 
 def gen_champernownes_decimals():

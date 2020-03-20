@@ -1,6 +1,6 @@
 from itertools import takewhile
 from collections import deque
-from common.tools import split_digits, join_digits
+from common.digits import split_digits, join_digits
 from common.primes import gen_primes, is_prime
 
 

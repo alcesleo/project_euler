@@ -1,4 +1,4 @@
-from common.tools import phi
+from common.math import phi
 
 
 def solve(limit=10):

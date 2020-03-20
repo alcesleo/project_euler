@@ -1,5 +1,5 @@
 from itertools import permutations
-from common.tools import join_digits
+from common.digits import join_digits
 
 pandigital = list(range(10))
 result = 0
