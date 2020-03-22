@@ -1,13 +1,10 @@
-"""Mathematical operations not covered by the standard library math functions
-"""
+"""Mathematical operations not covered by the standard library math functions."""
+
 import functools
 
 
 def factors(n):
-    """
-    Returns all the factors of n as a set
-
-    https://stackoverflow.com/questions/6800193/what-is-the-most-efficient-way-of-finding-all-the-factors-of-a-number-in-python
+    """Return all the factors of n as a set.
 
     >>> factors(15)
     {1, 3, 5, 15}
@@ -25,8 +22,7 @@ def factors(n):
 
 @functools.lru_cache(maxsize=2048)
 def partitions(n, numbers=None):
-    """Returns the amount of partitions of n into numbers, a tuple sorted from biggest to smallest
-    """
+    """Return the amount of partitions of n into numbers, a tuple sorted from biggest to smallest."""
     if numbers == None:
         numbers = tuple(reversed(range(1, n + 1)))
         return partitions(n, numbers)
@@ -64,7 +60,7 @@ def proper_divisors(n):
 
 
 def phi(n):
-    """Returns the Euler's Totient of n, i.e. the number of relative primes to n below n.
+    """Return the Euler's Totient of n, i.e. the number of relative primes to n below n.
 
     https://www.geeksforgeeks.org/eulers-totient-function/
     """
@@ -87,7 +83,7 @@ def phi(n):
 
 
 def is_palindrome(n):
-    """Returns whether a n is a palindrome
+    """Return whether a n is a palindrome.
 
     >>> is_palindrome(12321)
     True

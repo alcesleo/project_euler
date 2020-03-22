@@ -5,8 +5,7 @@ import itertools
 
 
 def gen_primes():
-    """
-    Generates an infinite sequence of prime numbers.
+    """Generate an infinite sequence of prime numbers.
 
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
@@ -36,7 +35,7 @@ def gen_primes():
 
 
 def is_prime(n):
-    """Returns whether n is prime
+    """Return whether n is prime.
 
     >>> is_prime(29)
     True

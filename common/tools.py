@@ -6,13 +6,14 @@ import os
 
 
 def nth(iterable, index):
-    """Returns the nth 1-index in an iterable
-    """
+    """Return the nth 1-index in an iterable."""
     return next(itertools.islice(iterable, index - 1, None))
 
 
 def ibetween(iterable, lower, upper):
-    """Much like itertools.islice, but with values rather than indexes
+    """Return the values between a lower and upper bound in an iterable.
+
+    Much like itertools.islice, but with values rather than indexes
 
     >>> list(ibetween(itertools.count(), 5, 10))
     [5, 6, 7, 8, 9]
@@ -25,15 +26,12 @@ def ibetween(iterable, lower, upper):
 
 
 def to_generator(fn, start=1):
-    """Given a function fn that takes an int n, returns a generator that counts up fn of n
-    """
+    """Given a function fn that takes an int n, returns a generator that counts up fn of n."""
     for i in itertools.count(start):
         yield(fn(i))
 
 
 def debug(*args):
-    """Works as the print() function as long as the DEBUG flag is set, otherwise does nothing
-    """
-
+    """Works as the print() function as long as the DEBUG flag is set, otherwise does nothing."""
     if os.environ.get("DEBUG"):
         print(*args)

@@ -72,3 +72,4 @@ Links to relevant Python documentation
 - [math](https://docs.python.org/3.6/library/math.html)
 - [numpy](https://numpy.org/doc/1.18/)
 - [set](https://docs.python.org/3.6/library/stdtypes.html#set)
+- [PEP257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257/)

@@ -1,10 +1,10 @@
-"""Functions for working with individual digits of integers
-"""
+"""Functions for working with individual digits of integers."""
+
 import itertools
 
 
 def split_digits(n):
-    """Returns a list of the digits in n
+    """Return a list of the digits in n.
 
     >>> split_digits(123)
     [1, 2, 3]
@@ -13,7 +13,7 @@ def split_digits(n):
 
 
 def join_digits(d):
-    """Returns an int from concatenating a list of digits
+    """Return an int from concatenating a list of digits.
 
     >>> join_digits([1, 2, 3])
     123
@@ -25,8 +25,9 @@ def join_digits(d):
 
 
 def digit_permutations(n):
-    """Returns all valid permutations of the digits of n,
-    these may be fewer than permutations of a string as leading zeros yield non-valid permutations.
+    """Return all valid permutations of the digits of n.
+
+    There may be fewer than permutations of a string, as leading zeros yield non-valid integer permutations.
 
     >>> digit_permutations(123)
     {321, 132, 231, 213, 312, 123}

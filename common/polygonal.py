@@ -3,7 +3,7 @@
 
 
 def triangle(n):
-    """Returns the nth triangle number
+    """Return the nth triangle number.
 
     >>> list(map(triangle, range(1, 6)))
     [1, 3, 6, 10, 15]
@@ -12,7 +12,7 @@ def triangle(n):
 
 
 def square(n):
-    """Returns the nth square number
+    """Return the nth square number.
 
     >>> list(map(square, range(1, 6)))
     [1, 4, 9, 16, 25]
@@ -21,7 +21,7 @@ def square(n):
 
 
 def pentagonal(n):
-    """Returns the nth pentagonal number
+    """Return the nth pentagonal number.
 
     >>> list(map(pentagonal, range(1, 6)))
     [1, 5, 12, 22, 35]
@@ -30,7 +30,7 @@ def pentagonal(n):
 
 
 def hexagonal(n):
-    """Returns the nth hexagonal number
+    """Return the nth hexagonal number.
 
     >>> list(map(hexagonal, range(1, 6)))
     [1, 6, 15, 28, 45]
@@ -39,7 +39,7 @@ def hexagonal(n):
 
 
 def heptagonal(n):
-    """Returns the nth heptagonal number
+    """Return the nth heptagonal number.
 
     >>> list(map(heptagonal, range(1, 6)))
     [1, 7, 18, 34, 55]
@@ -48,7 +48,7 @@ def heptagonal(n):
 
 
 def octagonal(n):
-    """Returns the nth octagonal number
+    """Return the nth octagonal number.
 
     >>> list(map(octagonal, range(1, 6)))
     [1, 8, 21, 40, 65]

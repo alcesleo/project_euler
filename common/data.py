@@ -1,3 +1,5 @@
+"""Read and parse text files from the data/ directory"""
+
 import os
 
 SCRIPT_PATH = os.path.dirname(__file__)
