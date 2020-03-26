@@ -5,7 +5,7 @@ from common.digits import split_digits
 LIMIT = 1000
 
 
-def expand_root_two(iterations):
+def converge(precision):
     """Expands the square root of two by a number of iterations, equivalent to the following:
 
     1 + Fraction(1, 2)
@@ -13,27 +13,27 @@ def expand_root_two(iterations):
     1 + Fraction(1, 2 + Fraction(1, 2 + Fraction(1, 2)))
     1 + Fraction(1, 2 + Fraction(1, 2 + Fraction(1, 2 + Fraction(1, 2))))
 
-    >>> expand_root_two(0)
+    >>> converge(0)
     Fraction(3, 2)
 
-    >>> expand_root_two(1)
+    >>> converge(1)
     Fraction(7, 5)
 
-    >>> expand_root_two(2)
+    >>> converge(2)
     Fraction(17, 12)
 
-    >>> expand_root_two(3)
+    >>> converge(3)
     Fraction(41, 29)
     """
-    return 1 + Fraction(1, denominator(iterations))
+    return 1 + Fraction(1, denominator(precision))
 
 
 @lru_cache(maxsize=1)
-def denominator(iterations):
-    if iterations == 0:
+def denominator(precision):
+    if precision == 0:
         return 2
 
-    return 2 + Fraction(1, denominator(iterations - 1))
+    return 2 + Fraction(1, denominator(precision - 1))
 
 
 def count_digits(n):
@@ -43,8 +43,8 @@ def count_digits(n):
 def solve():
     result = 0
 
-    for i in range(LIMIT):
-        expansion = expand_root_two(i)
+    for precision in range(LIMIT):
+        expansion = converge(precision)
 
         if count_digits(expansion.numerator) > count_digits(expansion.denominator):
             result += 1
@@ -52,4 +52,5 @@ def solve():
     return result
 
 
-print(solve())
+if __name__ == "__main__":
+    print(solve())
