@@ -11,10 +11,7 @@ in under 1m. Look into Markov Chains to improve th solution.
 
 from random import randint, sample
 from collections import Counter
-import logging
-
-logging.basicConfig(level=logging.ERROR,
-                    format="%(message)s")
+from common.logging import logger
 
 
 SQUARES = [
@@ -123,7 +120,7 @@ def solve(dice_faces=6, turns=10_000):
         result += f"{SQUARES.index(square):02}"
 
         percentage = amount / turns * 100
-        logging.info(f"{square:>4}: {percentage:2.4f}%")
+        logger.info(f"{square:>4}: {percentage:2.4f}%")
 
     return result
 

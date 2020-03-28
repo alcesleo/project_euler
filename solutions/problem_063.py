@@ -1,4 +1,4 @@
-from common.tools import debug
+from common.logging import logger
 
 limit = 100
 count = 0
@@ -9,6 +9,6 @@ for b in range(1, limit):
 
         if len(str(n)) == e:
             count += 1
-            debug(f"{count}: {b}^{e} = {n}")
+            logger.info(f"{count}: {b}^{e} = {n}")
 
 print(count)

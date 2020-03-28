@@ -1,7 +1,7 @@
 import operator
 from functools import reduce
 import numpy as np
-from common.tools import debug
+from common.logging import logger
 
 INPUT = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -47,7 +47,7 @@ def check_greatest_product(tag, numbers):
     global greatest_product
 
     if len(numbers) == WINDOW:
-        debug(tag, numbers)
+        logger.debug(f"{tag} {numbers}")
 
         product = reduce(operator.mul, numbers)
         if product > greatest_product:

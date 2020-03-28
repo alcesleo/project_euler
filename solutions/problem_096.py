@@ -1,7 +1,7 @@
 import numpy as np
 from common.data import read_data
 from common.digits import split_digits, join_digits
-from common.tools import debug
+from common.logging import logger
 
 
 SIZE = 9
@@ -82,9 +82,10 @@ def solve():
         top_left = join_digits(sudoku[0, 0:3])
         result += top_left
 
-        debug(f"Sudoku {i} {'solved' if solved else 'FAILED'}: {top_left}")
-        debug(sudoku)
-        debug()
+        logger.info(
+            f"Sudoku {i} {'solved' if solved else 'FAILED'}: {top_left}")
+        logger.info(sudoku)
+        logger.info("")
 
     return result
 

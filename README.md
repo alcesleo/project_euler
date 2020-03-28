@@ -23,7 +23,7 @@ time python -m solutions.problem_xxx
 python -m doctest -v solutions/problem_xxx.py
 
 # Print more helpful information than the answer
-DEBUG=True python -m solutions.problem_063
+LOG_LEVEL=info python -m solutions.problem_063
 
 # View the documentation for a module
 python -m pydoc solutions.problem_xxx
@@ -39,13 +39,13 @@ python -m common.report
 """
 Explain the solution in the module docstring
 """
-from common.tools import debug
+from common.logging import logger
 
 TARGET = 42
 
 
 def solve(limit=8):
-    debug(limit, TARGET)
+    logger.debug(limit, TARGET)
 
 
 if __name__ == "__main__":
