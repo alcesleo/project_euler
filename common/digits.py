@@ -24,6 +24,15 @@ def join_digits(d):
     return int("".join(map(str, d)))
 
 
+def sum_digits(n):
+    """Return the sum of the digits of n.
+
+    >>> sum_digits(123)
+    6
+    """
+    return sum(split_digits(n))
+
+
 def digit_permutations(n):
     """Return all valid permutations of the digits of n.
 
