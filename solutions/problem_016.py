@@ -1,5 +1,5 @@
-from common.digits import split_digits
+from common.digits import sum_digits
 
 TARGET = 1000
 
-print(sum(split_digits(2 ** TARGET)))
+print(sum_digits(2 ** TARGET))
