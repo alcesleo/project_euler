@@ -4,12 +4,15 @@ import itertools
 
 
 def split_digits(n):
-    """Return a list of the digits in n.
+    """Return a list of the digits in n, on both sides of the period.
 
     >>> split_digits(123)
-    [1, 2, 3]
+    (1, 2, 3)
+
+    >>> split_digits(3.14)
+    (3, 1, 4)
     """
-    return [int(d) for d in str(n)]
+    return tuple(int(d) for d in str(n) if d != ".")
 
 
 def join_digits(d):
