@@ -64,13 +64,13 @@ Structuring each solution like this is slightly more cumbersome than simply prin
 
 Links to relevant Python documentation
 
-- [collections](https://docs.python.org/3.6/library/collections.html)
-- [decimal](https://docs.python.org/3.6/library/decimal.html)
-- [doctest](https://docs.python.org/3.6/library/doctest.html)
-- [fractions](https://docs.python.org/3.6/library/fractions.html)
-- [functools](https://docs.python.org/3.6/library/functools.html)
-- [itertools](https://docs.python.org/3.6/library/itertools.html)
-- [math](https://docs.python.org/3.6/library/math.html)
+- [collections](https://docs.python.org/3/library/collections.html)
+- [decimal](https://docs.python.org/3/library/decimal.html)
+- [doctest](https://docs.python.org/3/library/doctest.html)
+- [fractions](https://docs.python.org/3/library/fractions.html)
+- [functools](https://docs.python.org/3/library/functools.html)
+- [itertools](https://docs.python.org/3/library/itertools.html)
+- [math](https://docs.python.org/3/library/math.html)
 - [numpy](https://numpy.org/doc/1.18/)
-- [set](https://docs.python.org/3.6/library/stdtypes.html#set)
+- [set, frozenset](https://docs.python.org/3/library/stdtypes.html#set)
 - [PEP257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257/)
