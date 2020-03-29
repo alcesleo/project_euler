@@ -65,6 +65,7 @@ Structuring each solution like this is slightly more cumbersome than simply prin
 Links to relevant Python documentation
 
 - [collections](https://docs.python.org/3.6/library/collections.html)
+- [decimal](https://docs.python.org/3.6/library/decimal.html)
 - [doctest](https://docs.python.org/3.6/library/doctest.html)
 - [fractions](https://docs.python.org/3.6/library/fractions.html)
 - [functools](https://docs.python.org/3.6/library/functools.html)
