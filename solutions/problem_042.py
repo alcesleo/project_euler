@@ -1,9 +1,11 @@
 import itertools
-from common.data import read_strs
+from common.data import read_data, parse_list
 from solutions.problem_022 import alphabetical_value
 from solutions.problem_012 import gen_triangle_numbers
 
-words = read_strs("p042_words.txt")
+data = read_data("p042_words.txt")
+words = parse_list(data, separator=",",
+                   parse_item=lambda s: s.replace('"', ""))
 
 limit = 10_000
 triangle_numbers = set(itertools.islice(gen_triangle_numbers(), limit))

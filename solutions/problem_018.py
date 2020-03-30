@@ -1,3 +1,5 @@
+from common.data import parse_grid
+
 INPUT = """
 75
 95 64
@@ -18,8 +20,7 @@ INPUT = """
 
 
 def parse_triangle(text):
-    return list(
-        map(lambda row: [int(n) for n in row.split(" ")], text.strip().splitlines()))
+    return parse_grid(text, separator=" ", parse_item=int)
 
 
 def maximum_above(index, row_above):

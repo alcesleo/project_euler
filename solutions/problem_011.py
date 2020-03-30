@@ -1,6 +1,7 @@
 import operator
 from functools import reduce
 import numpy as np
+from common.data import parse_grid
 from common.logging import logger
 
 INPUT = """
@@ -26,20 +27,11 @@ INPUT = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
-# Parse the data
-
-parsed_grid = []
-for row in INPUT.strip().splitlines():
-    parsed_row = [int(num) for num in row.split(" ")]
-    parsed_grid.append(parsed_row)
-
-grid = np.array(parsed_grid)
-
-# Solve the problem
 
 WINDOW = 4
 GRID_SIZE = 20
 
+grid = np.array(parse_grid(INPUT, separator=" ", parse_item=int))
 greatest_product = 0
 
 

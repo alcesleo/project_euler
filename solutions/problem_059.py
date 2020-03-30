@@ -1,6 +1,6 @@
 from itertools import cycle, islice, product
 from collections import Counter
-from common.data import read_data
+from common.data import read_data, parse_list
 
 
 def cipher(data, key):
@@ -48,7 +48,7 @@ def brute_force(data):
 
 def solve():
     data = read_data("p059_cipher.txt")
-    data = list(map(int, data.split(",")))
+    data = parse_list(data, separator=",", parse_item=int)
 
     text = brute_force(data)
 

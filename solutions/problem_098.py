@@ -1,6 +1,6 @@
 from itertools import permutations
 from collections import defaultdict
-from common.data import read_strs
+from common.data import read_data, parse_list
 from common.digits import join_digits
 
 
@@ -57,7 +57,10 @@ def is_square(n):
 
 
 def solve():
-    words = read_strs("p098_words.txt")
+    data = read_data("p098_words.txt")
+    words = parse_list(data, separator=",",
+                       parse_item=lambda s: s.replace('"', ""))
+
     anagrams = find_anagrams(words)
     largest = 0
 
