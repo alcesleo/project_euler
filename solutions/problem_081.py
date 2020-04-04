@@ -17,6 +17,15 @@ from common.data import read_data, parse_grid
 from common.logging import logger
 
 
+EXAMPLE_DATA = """
+    131,673,234,103,18
+    201,96,342,965,150
+    630,803,746,422,111
+    537,699,497,121,956
+    805,732,524,37,331
+"""
+
+
 Vertex = namedtuple("Vertex", ["weight", "neighbors"])
 
 
@@ -42,30 +51,26 @@ def parse_graph(grid):
 
             graph[(row, col)] = vertex
 
-    logger.debug(graph)
+    # logger.debug(graph)
 
     return graph
 
 
-def dijkstra(graph, start, end):
-    """Returns a list of the items in the shortest path between start and end in a graph"""
-    queue = []
+def dijkstra(graph, start):
+    queue = PriorityQueue()
+    queue.put((0, start))
 
     distance = {}
     previous = {}
 
     for vertex in graph:
-        logger.debug(f"Dijkstra VERTEX {vertex}: {graph[vertex]}")
         distance[vertex] = inf
         previous[vertex] = None
-        queue.append(vertex)
 
     distance[start] = 0
 
-    while queue:
-        # Remove the cheapest
-        current_id = min(queue, key=lambda vertex: distance[vertex])
-        queue.remove(current_id)
+    while not queue.empty():
+        _, current_id = queue.get()
 
         current = graph[current_id]
 
@@ -76,18 +81,13 @@ def dijkstra(graph, start, end):
                 distance[neighbor] = alt
                 previous[neighbor] = current_id
 
+                queue.put((distance[neighbor], neighbor))
+
     return distance, previous
 
 
 def verify():
-    data = """
-        131,673,234,103,18
-        201,96,342,965,150
-        630,803,746,422,111
-        537,699,497,121,956
-        805,732,524,37,331
-    """
-    grid = parse_grid(data, separator=",", parse_item=int)
+    grid = parse_grid(EXAMPLE_DATA, separator=",", parse_item=int)
     graph = parse_graph(grid)
 
     height = len(grid)
@@ -96,7 +96,7 @@ def verify():
     top_left = (0, 0)
     bottom_right = (len(grid) - 1, len(grid[0]) - 1)
 
-    dist, prev = dijkstra(graph, top_left, bottom_right)
+    dist, prev = dijkstra(graph, top_left)
     return(grid[0][0] + dist[bottom_right])
 
 
@@ -112,7 +112,7 @@ def solve():
     top_left = (0, 0)
     bottom_right = (len(grid) - 1, len(grid[0]) - 1)
 
-    dist, prev = dijkstra(graph, top_left, bottom_right)
+    dist, prev = dijkstra(graph, top_left)
     return(grid[0][0] + dist[bottom_right])
 
 
