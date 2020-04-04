@@ -51,8 +51,6 @@ def parse_graph(grid):
 
             graph[(row, col)] = vertex
 
-    # logger.debug(graph)
-
     return graph
 
 
@@ -70,40 +68,24 @@ def dijkstra(graph, start):
     distance[start] = 0
 
     while not queue.empty():
-        _, current_id = queue.get()
+        _, vertex = queue.get()
 
-        current = graph[current_id]
+        weight, neighbors = graph[vertex]
 
-        for neighbor in current.neighbors:
-            alt = distance[current_id] + graph[neighbor].weight
+        for neighbor in neighbors:
+            alt = distance[vertex] + graph[neighbor].weight
 
             if alt < distance[neighbor]:
                 distance[neighbor] = alt
-                previous[neighbor] = current_id
+                previous[neighbor] = vertex
 
                 queue.put((distance[neighbor], neighbor))
 
     return distance, previous
 
 
-def verify():
-    grid = parse_grid(EXAMPLE_DATA, separator=",", parse_item=int)
-    graph = parse_graph(grid)
-
-    height = len(grid)
-    width = len(grid[0])
-
-    top_left = (0, 0)
-    bottom_right = (len(grid) - 1, len(grid[0]) - 1)
-
-    dist, prev = dijkstra(graph, top_left)
-    return(grid[0][0] + dist[bottom_right])
-
-
-def solve():
-    data = read_data("p081_matrix.txt")
+def solve(data=EXAMPLE_DATA):
     grid = parse_grid(data, separator=",", parse_item=int)
-
     graph = parse_graph(grid)
 
     height = len(grid)
@@ -117,5 +99,5 @@ def solve():
 
 
 if __name__ == "__main__":
-    # print(verify())
-    print(solve())
+    data = read_data("p081_matrix.txt")
+    print(solve(data))
