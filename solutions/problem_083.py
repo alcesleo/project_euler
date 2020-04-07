@@ -9,43 +9,12 @@ don't have to loop through the different possible rows and only need to find one
 
 from math import inf
 from common.data import read_data, parse_grid
-from solutions.problem_081 import dijkstra, Vertex, EXAMPLE_DATA
-
-
-def parse_graph(grid):
-    height = len(grid)
-    width = len(grid[0])
-
-    graph = {}
-
-    for row in range(height):
-        for col in range(width):
-            neighbors = []
-
-            if col + 1 < width:
-                neighbors.append((row, col + 1))
-
-            if row + 1 < height:
-                neighbors.append((row + 1, col))
-
-            if row - 1 >= 0:
-                neighbors.append((row - 1, col))
-
-            if col - 1 >= 0:
-                neighbors.append((row, col - 1))
-
-            vertex = Vertex(
-                weight=grid[row][col],
-                neighbors=neighbors)
-
-            graph[(row, col)] = vertex
-
-    return graph
+from solutions.problem_081 import parse_graph, dijkstra, EXAMPLE_DATA
 
 
 def solve(data=EXAMPLE_DATA):
     grid = parse_grid(data, separator=",", parse_item=int)
-    graph = parse_graph(grid)
+    graph = parse_graph(grid, directions=[(0, 1), (1, 0), (-1, 0), (0, -1)])
 
     height = len(grid)
     width = len(grid[0])
