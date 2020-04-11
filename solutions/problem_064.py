@@ -19,39 +19,8 @@ https://stackoverflow.com/questions/12182701/generating-continued-fractions-for-
 """
 
 from math import sqrt
+from common.continued_fractions import period_of_root
 from common.logging import logger
-
-
-def period_of_root(n):
-    """Returns [a0, a1, a2, a3, ..., an] for the square root of n,
-    where a1...an is the repeating period as denoted in the format [a0; (a1, a2, a3, ..., an)].
-
-    This is just a Python port of the C++ code in the accepted answer:
-
-    https://stackoverflow.com/questions/12182701/generating-continued-fractions-for-square-roots
-    """
-    r = int(sqrt(n))
-
-    result = [r]
-
-    if (r * r == n):
-        return result
-
-    a = r
-    p = 0
-    q = 1
-
-    while True:
-        p = a * q - p
-        q = (n - p*p) // q
-        a = (r + p) // q
-
-        result.append(a)
-
-        if q == 1:
-            break
-
-    return result
 
 
 def solve(limit=13):

@@ -3,6 +3,7 @@
 See https://en.wikipedia.org/wiki/Continued_fraction for example notations and terminology.
 """
 
+from math import sqrt
 from fractions import Fraction
 from functools import lru_cache
 
@@ -71,3 +72,35 @@ def converge(terms):
         return Fraction(0, 1)
 
     return Fraction(1, terms[0] + converge(terms[1:]))
+
+
+def period_of_root(n):
+    """Returns [a0, a1, a2, a3, ..., an] for the square root of n,
+    where a1...an is the repeating period as denoted in the format [a0; (a1, a2, a3, ..., an)].
+
+    This is just a Python port of the C++ code in the accepted answer:
+
+    https://stackoverflow.com/questions/12182701/generating-continued-fractions-for-square-roots
+    """
+    r = int(sqrt(n))
+
+    result = [r]
+
+    if (r * r == n):
+        return result
+
+    a = r
+    p = 0
+    q = 1
+
+    while True:
+        p = a * q - p
+        q = (n - p*p) // q
+        a = (r + p) // q
+
+        result.append(a)
+
+        if q == 1:
+            break
+
+    return result

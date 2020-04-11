@@ -9,7 +9,8 @@ it's smaller than the existing value.
         for y in range(1, limit_y + 1):
             x2 = d * (y**2) + 1
 
-The problem here is limit_y which you have to crank up to ludicrous numbers to get a solution for some D.
+The problem here is limit_y which you have to crank up to ludicrous numbers to even
+get a solution for some D, and never getting any guarantees of x being minimized.
 
 After reading up on Diophantine equations on Wikipedia, it turns out the equation
 in this problem is known as Pell's equation, for which you can get a minimal solution
@@ -25,9 +26,8 @@ https://en.wikipedia.org/wiki/Pell%27s_equation
 from math import sqrt
 from itertools import cycle
 
-from common.continued_fractions import continued_fraction
-from common.logging import info, debug
-from solutions.problem_064 import period_of_root
+from common.continued_fractions import continued_fraction, period_of_root
+from common.logging import info
 
 
 def convergents_of_root(n):
@@ -72,7 +72,7 @@ def solve(limit=7):
         x, y = pells_equation(d)
         d_min_x[d] = x
 
-        debug(f"{x}^2 - {d}*{y}^2 = {(x**2) - (d*y*y)}")
+        info(f"D={d}, {x}^2 - {d}*{y}^2 = {(x*x) - (d*y*y)}")
 
     result = max(d_min_x, key=lambda k: d_min_x[k])
     info(f"D={result}, x={d_min_x[d]}")
