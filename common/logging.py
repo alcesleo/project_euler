@@ -10,3 +10,7 @@ FORMAT = "%(message)s"
 logging.basicConfig(level=LOG_LEVEL, format=FORMAT)
 
 logger = logging.getLogger()
+debug = logger.debug
+info = logger.info
+warn = logger.warn
+error = logger.error
