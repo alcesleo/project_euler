@@ -1,25 +1,30 @@
-def gen_collatz(start):
-    n = start
+from functools import lru_cache
 
-    yield(n)
 
-    while n != 1:
-        if n % 2 == 0:
-            n = n // 2
-        else:
-            n = 3*n + 1
+@lru_cache(maxsize=1_000_000)
+def next_collatz(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return 3*n + 1
 
-        yield(n)
+
+@lru_cache(maxsize=1_000_000)
+def chain_length(n):
+    if n == 1:
+        return 1
+
+    return 1 + chain_length(next_collatz(n))
 
 
 def solve(limit=1_000_000):
     longest_chain, starting_number = 0, 0
 
     for i in range(1, limit):
-        sequence_length = len(list(gen_collatz(i)))
+        length = chain_length(i)
 
-        if sequence_length > longest_chain:
-            longest_chain, starting_number = sequence_length, i
+        if length > longest_chain:
+            longest_chain, starting_number = length, i
 
     return starting_number
 
