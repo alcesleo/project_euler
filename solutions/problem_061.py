@@ -8,7 +8,7 @@ Working with strings is easier here since we don't actually use any numerical op
 import itertools
 import textwrap
 from common import polygonal
-from common.tools import to_generator, ibetween
+from common.tools import sequence, ibetween
 
 
 def four_digits(fn):
@@ -16,7 +16,7 @@ def four_digits(fn):
     """
     lower = 1000
     upper = 10000
-    iterable = to_generator(fn)
+    iterable = sequence(fn)
 
     return list(map(str, ibetween(iterable, lower, upper)))
 

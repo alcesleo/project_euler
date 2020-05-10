@@ -25,7 +25,7 @@ def ibetween(iterable, lower, upper):
             iterable))
 
 
-def to_generator(fn, start=1):
+def sequence(fn, start=1):
     """Given a function fn that takes an int n, returns a generator that counts up fn of n."""
     for i in itertools.count(start):
         yield(fn(i))

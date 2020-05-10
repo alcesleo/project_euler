@@ -1,7 +1,7 @@
 import itertools
 
 from common.polygonal import triangle, pentagonal, hexagonal
-from common.tools import to_generator
+from common.tools import sequence
 
 
 def in_sequence_factory(generator):
@@ -29,8 +29,8 @@ START = 286
 
 
 def solve():
-    is_pentagonal = in_sequence_factory(to_generator(pentagonal))
-    is_hexagonal = in_sequence_factory(to_generator(hexagonal))
+    is_pentagonal = in_sequence_factory(sequence(pentagonal))
+    is_hexagonal = in_sequence_factory(sequence(hexagonal))
 
     for i in itertools.count(START):
         t = triangle(i)
