@@ -1,7 +1,18 @@
-from functools import lru_cache
+CHAIN_LENGTHS = {}
 
 
-@lru_cache(maxsize=1_000_000)
+def chain_length(n):
+    if n == 1:
+        return 1
+
+    if n in CHAIN_LENGTHS:
+        return CHAIN_LENGTHS[n]
+
+    CHAIN_LENGTHS[n] = 1 + chain_length(next_collatz(n))
+
+    return CHAIN_LENGTHS[n]
+
+
 def next_collatz(n):
     if n % 2 == 0:
         return n // 2
@@ -9,15 +20,7 @@ def next_collatz(n):
         return 3*n + 1
 
 
-@lru_cache(maxsize=1_000_000)
-def chain_length(n):
-    if n == 1:
-        return 1
-
-    return 1 + chain_length(next_collatz(n))
-
-
-def solve(limit=1_000_000):
+def solve(limit):
     longest_chain, starting_number = 0, 0
 
     for i in range(1, limit):
@@ -30,4 +33,4 @@ def solve(limit=1_000_000):
 
 
 if __name__ == "__main__":
-    print(solve())
+    print(solve(1_000_000))
