@@ -65,16 +65,16 @@ def gen_pythagorean_triples(maximum_perimiter):
                     else:
                         break
 
-                yield primitive_triple
+                yield tuple(sorted(primitive_triple))
 
                 for k in count(2):
                     composite_triple = euclids_formula(m, n, k)
 
                     # If the perimiter of the multiplied triple is over the maximum_perimiter, we move on to the next primitive.
-                    if max(composite_triple) > maximum_perimiter:
+                    if sum(composite_triple) > maximum_perimiter:
                         break
 
-                    yield composite_triple
+                    yield tuple(sorted(composite_triple))
 
 
 def solve(limit=120):
