@@ -39,18 +39,18 @@ python -m common.report
 """
 Explain the solution in the module docstring
 """
-from common.logging import logger
 
-TARGET = 42
+def solve(limit):
+    """Test the example given in the question in a doctest:
 
-
-def solve(limit=8):
-    logger.debug(limit, TARGET)
+    >>> solve(8)
+    42
+    """
+    return 42
 
 
 if __name__ == "__main__":
-    result = solve(1_000_000)
-    print(result)
+    print(solve(1_000_000))
 ```
 
 Structuring each solution like this is slightly more cumbersome than simply printing the answer, but gives several benefits:
