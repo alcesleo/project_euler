@@ -25,64 +25,17 @@ been added for clarity:
 * each right child increments the rightmost number
 * each left child pushes another number in from the right
 
-This will try combinations with many low numbers, or few big
-numbers first, which is the pattern these seem to take (e.g.
-a bunch of 2's or a large number at the end.
+Every product will have a matching sum that you get by padding the product with
+1's, giving a solution for a value of k.
 
-I tried really hard to make this a binary search which would
-be a lot faster, but couldn't find a way to determine which
-side of the tree must contain the minimum solution (or a tree
-structure where that question can be answered).
-
-This solution is a lot quicker than some other solutions I tried
-but still nowhere near fast enough at over 10m.
+Going through this tree up to 2k and keeping track of the minimum
+for each k yields the solution.
 """
 
 from math import prod, inf
-from collections import deque
+from collections import deque, defaultdict
 
-from common.logging import info, debug, warning
-
-
-def minimal_product_sum(k):
-    """
-    >>> minimal_product_sum(5)
-    8
-
-    >>> minimal_product_sum(6)
-    12
-    """
-
-    queue = deque([(2,)])
-    minimum = inf
-    k2 = k * 2
-
-    while queue:
-        a = queue.popleft()
-        kl = len(a) # k discounting the 1's
-
-        p = prod(a)
-        s = sum(a) + (k - kl) # Pad with 1's
-
-        # Both padding and increasing yields larger numbers,
-        # if p or s is already above k2, their children also
-        # will be, and we know that the minimum is below k2.
-        if p > k2 or s > k2:
-            continue
-
-        if p == s and p < minimum:
-            info(f"k={k}: {s} = {a}")
-            minimum = p
-
-        if kl < k:
-            left = a + (a[-1],)
-            queue.append(left)
-
-        if a[-1] < k:
-            right = a[:-1] + (a[-1] + 1,)
-            queue.append(right)
-
-    return minimum
+from common.logging import info
 
 
 def solve(limit):
@@ -93,11 +46,33 @@ def solve(limit):
     >>> solve(12)
     61
     """
-    product_sums = set()
 
-    for k in range(2, limit + 1):
-        product_sums.add(minimal_product_sum(k))
+    minimum = defaultdict(lambda: inf)
+    queue = deque([(2,)])
+    k2 = limit * 2
 
+    while queue:
+        numbers = queue.popleft()
+
+        p = prod(numbers)
+        s = sum(numbers)
+        k = len(numbers) + (p - s)
+
+        if p > k2:
+            continue
+
+        if k > 1 and k <= limit:
+            minimum[k] = min(minimum[k], p)
+
+        info(f"k={k}: {s} = {numbers}")
+
+        left = numbers + (numbers[-1],)
+        queue.append(left)
+
+        right = numbers[:-1] + (numbers[-1] + 1,)
+        queue.append(right)
+
+    product_sums = set(minimum.values())
     info(product_sums)
 
     return sum(product_sums)
