@@ -1,14 +1,20 @@
-import math
-from common import primes
+from itertools import takewhile
+from math import sqrt
+from common.primes import gen_primes
 
-LIMIT = 600851475143
-biggest_factor = 0
+def largest_prime_factor(n):
+    """
+    >>> largest_prime_factor(13195)
+    29
+    """
+    largest_factor = 0
+    limit = sqrt(n)
 
-for x in primes.gen_primes():
-    if LIMIT % x == 0:
-        biggest_factor = x
+    for p in takewhile(lambda p: p < limit, gen_primes()):
+        if n % p == 0:
+            largest_factor = p
 
-    if x > math.sqrt(LIMIT):
-        break
+    return largest_factor
 
-print(biggest_factor)
+if __name__ == "__main__":
+    print(largest_prime_factor(600851475143))

@@ -1,11 +1,18 @@
-LIMIT = 4_000_000
-a = 0
-b = 1
-result = 0
+def solve(limit):
+    """
+    >>> solve(100)
+    44
+    """
+    total = 0
+    a, b = 0, 1
 
-while a < LIMIT:
-    a, b = b, a + b
-    if (a % 2 == 0):
-        result += a
+    while a < limit:
+        if (a % 2 == 0):
+            total += a
 
-print(result)
+        a, b = b, a + b
+
+    return total
+
+if __name__ == "__main__":
+    print(solve(4_000_000))

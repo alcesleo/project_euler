@@ -1,8 +1,15 @@
-LIMIT = 1000
-sum = 0
+def solve(limit):
+    """
+    >>> solve(10)
+    23
+    """
+    total = 0
 
-for x in range(LIMIT):
-    if x % 3 == 0 or x % 5 == 0:
-        sum += x
+    for x in range(limit):
+        if x % 3 == 0 or x % 5 == 0:
+            total += x
 
-print(sum)
+    return total
+
+if __name__ == "__main__":
+    print(solve(1000))
