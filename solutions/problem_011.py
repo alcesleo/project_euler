@@ -1,5 +1,6 @@
 from math import prod
 from common.data import parse_grid
+from common.tools import slice_grid
 from common.logging import logger
 
 INPUT = """
@@ -25,32 +26,16 @@ INPUT = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
-def slice_grid(grid, num_items, row, col, hstep=0, vstep=0):
-    """Given a grid, returns a list by starting at row,col and moving the
-    coordinates by hstep,vstep until num_items have been collected.
-    """
-    result = []
-
-    while len(result) < num_items:
-        if row >= len(grid) or col >= len(grid[row]):
-            return result
-
-        result.append(grid[row][col])
-        row += hstep
-        col += vstep
-
-    return result
-
 def solve(window_size):
     grid = parse_grid(INPUT, separator=" ", parse_item=int)
     product = 0
 
     for row in range(0, len(grid)):
         for col in range(0, len(grid[row])):
-            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1)))
-            product = max(product, prod(slice_grid(grid, window_size, row, col, vstep=1)))
-            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1, vstep=1)))
-            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1, vstep=-1)))
+            product = max(product, prod(slice_grid(grid, row, col, window_size, hstep=1)))
+            product = max(product, prod(slice_grid(grid, row, col, window_size, vstep=1)))
+            product = max(product, prod(slice_grid(grid, row, col, window_size, hstep=1, vstep=1)))
+            product = max(product, prod(slice_grid(grid, row, col, window_size, hstep=1, vstep=-1)))
 
     return product
 
