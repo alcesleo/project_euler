@@ -1,6 +1,4 @@
-import operator
-from functools import reduce
-import numpy as np
+from math import prod
 from common.data import parse_grid
 from common.logging import logger
 
@@ -27,39 +25,35 @@ INPUT = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
+def slice_grid(grid, num_items, row, col, hstep=0, vstep=0):
+    """Given a grid, returns a list by starting at row,col and moving the
+    coordinates by hstep,vstep until num_items have been collected.
+    """
+    result = []
 
-WINDOW = 4
-GRID_SIZE = 20
+    while len(result) < num_items:
+        if row >= len(grid) or col >= len(grid[row]):
+            return result
 
-grid = np.array(parse_grid(INPUT, separator=" ", parse_item=int))
-greatest_product = 0
+        result.append(grid[row][col])
+        row += hstep
+        col += vstep
 
+    return result
 
-def check_greatest_product(tag, numbers):
-    global greatest_product
+def solve(window_size):
+    grid = parse_grid(INPUT, separator=" ", parse_item=int)
+    product = 0
 
-    if len(numbers) == WINDOW:
-        logger.debug(f"{tag} {numbers}")
+    for row in range(0, len(grid)):
+        for col in range(0, len(grid[row])):
+            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1)))
+            product = max(product, prod(slice_grid(grid, window_size, row, col, vstep=1)))
+            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1, vstep=1)))
+            product = max(product, prod(slice_grid(grid, window_size, row, col, hstep=1, vstep=-1)))
 
-        product = reduce(operator.mul, numbers)
-        if product > greatest_product:
-            greatest_product = product
-
-
-for start_row in range(0, GRID_SIZE):
-    for start_col in range(0, GRID_SIZE):
-        end_row = start_row + WINDOW
-        end_col = start_col + WINDOW
-
-        check_greatest_product("-", grid[start_row, start_col:end_col])
-
-        check_greatest_product("|", grid[start_row:end_row, start_col])
-
-        check_greatest_product("\\", np.diag(
-            grid[start_row:], start_col)[:WINDOW])
-
-        check_greatest_product("/", np.diag(
-            np.fliplr(grid)[start_row:], start_col)[:WINDOW])
+    return product
 
 
-print(greatest_product)
+if __name__ == "__main__":
+    print(solve(4))
