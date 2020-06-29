@@ -39,6 +39,7 @@ python -m common.report
 """
 Explain the solution in the module docstring
 """
+from common.logging import info
 
 def solve(limit):
     """Test the example given in the question in a doctest:
@@ -46,6 +47,7 @@ def solve(limit):
     >>> solve(8)
     42
     """
+    info(f"Log other information using the logging functions.")
     return 42
 
 
@@ -57,7 +59,8 @@ Structuring each solution like this is slightly more cumbersome than simply prin
 
 - Each file can still simply be run to output the result
 - Enables tools like `pydoc` and `doctest` to run without triggering the often expensive `solve()`-function
-- Lets you keep variables from the example to verify the solution as default arguments rather than ugly commented out variables
+- Lets you import functions from other solutions
+- Lets you keep variables from the examples around to verify the solution
 - Lets you keep useful debugging output that often explains the solution really well without having ugly commented out `print()`-statements
 
 ## Documentation
