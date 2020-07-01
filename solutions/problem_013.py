@@ -101,7 +101,11 @@ INPUT = """
 53503534226472524250874054075591789781264330331690
 """
 
-NUMBERS = [int(x) for x in INPUT.strip().splitlines()]
 
-result = str(sum(NUMBERS))[:10]
-print(result)
+def solve(numbers):
+    parsed_numbers = [int(x) for x in INPUT.strip().splitlines()]
+    return str(sum(parsed_numbers))[:10]
+
+
+if __name__ == "__main__":
+    print(solve(INPUT))

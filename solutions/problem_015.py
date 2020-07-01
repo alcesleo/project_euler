@@ -1,10 +1,12 @@
+"""
+The number of paths is the central binominal coefficient, which is the middle
+of row 2n+1 in Pascal's triangle.
+
+http://www.robertdickau.com/manhattan.html
+https://en.wikipedia.org/wiki/Binomial_coefficient
+https://en.wikipedia.org/wiki/Pascal%27s_triangle
+"""
 from common.tools import nth
-
-# http://www.robertdickau.com/manhattan.html
-# https://en.wikipedia.org/wiki/Binomial_coefficient
-# https://en.wikipedia.org/wiki/Pascal%27s_triangle
-
-# The number of paths is the central binominal coefficient, which is the middle of row 2n+1 in Pascal's triangle.
 
 
 def gen_pascal_triangle():
@@ -17,9 +19,10 @@ def gen_pascal_triangle():
                              for i in range(len(current_row) - 1)] + [1]
 
 
-LIMIT = 20
+def solve(limit):
+    row = nth(gen_pascal_triangle(), limit*2 + 1)
+    return row[len(row) // 2]
 
-row = nth(gen_pascal_triangle(), LIMIT*2 + 1)
-result = row[len(row) // 2]
 
-print(result)
+if __name__ == "__main__":
+    print(solve(20))

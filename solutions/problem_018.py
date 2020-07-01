@@ -43,6 +43,18 @@ def maximum_path(triangle):
     return max(maxima)
 
 
+def solve(triangle_data):
+    """
+    >>> solve('''
+    ... 3
+    ... 7 4
+    ... 2 4 6
+    ... 8 5 9 3
+    ... ''')
+    23
+    """
+    return maximum_path(parse_triangle(triangle_data))
+
+
 if __name__ == "__main__":
-    triangle = parse_triangle(INPUT)
-    print(maximum_path(triangle))
+    print(solve(INPUT))

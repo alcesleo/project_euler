@@ -1,5 +1,13 @@
 from common.digits import sum_digits
 
-TARGET = 1000
 
-print(sum_digits(2 ** TARGET))
+def solve(exponent):
+    """
+    >>> solve(15)
+    26
+    """
+    return sum_digits(2 ** exponent)
+
+
+if __name__ == "__main__":
+    print(solve(1000))

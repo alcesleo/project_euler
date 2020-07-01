@@ -64,9 +64,13 @@ def number_of_letters(text):
     return len(text.replace("-", "").replace(" ", ""))
 
 
-LIMIT = 1000
+def solve(limit):
+    """
+    >>> solve(5)
+    19
+    """
+    return sum([number_of_letters(number_to_english(n))
+               for n in range(1, limit + 1)])
 
-result = sum([number_of_letters(number_to_english(n))
-              for n in range(1, LIMIT + 1)])
-
-print(result)
+if __name__ == "__main__":
+    print(solve(1000))

@@ -1,17 +1,19 @@
 from datetime import date, timedelta
 
-START_DATE = date(1901, 1, 1)
-END_DATE = date(2000, 12, 31)
-LIMIT = END_DATE - START_DATE
 SUNDAY = 6
 
-first_sundays = 0
+def solve(start_date, end_date):
+    first_sundays = 0
+    limit = end_date - start_date
 
-for i in range(LIMIT.days + 1):
-    d = START_DATE + timedelta(days=i)
+    for i in range(limit.days + 1):
+        d = start_date + timedelta(days=i)
 
-    if d.day == 1 and d.weekday() == SUNDAY:
-        first_sundays += 1
+        if d.day == 1 and d.weekday() == SUNDAY:
+            first_sundays += 1
+
+    return first_sundays
 
 
-print(first_sundays)
+if __name__ == "__main__":
+    print(solve(date(1901, 1, 1), date(2000, 12, 31)))
