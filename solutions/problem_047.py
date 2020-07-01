@@ -1,7 +1,8 @@
-import itertools
+from itertools import count
 from functools import reduce, lru_cache
-from collections import deque, Counter
+from collections import Counter
 from operator import __or__
+from common.tools import gen_window
 
 
 @lru_cache(maxsize=8)
@@ -63,28 +64,8 @@ def none_intersect(sets):
     return len(reduce(__or__, sets)) == sum(map(len, sets))
 
 
-def gen_window(iterable, size):
-    """Iterates over a window of size items in iterable
-
-    >>> w = gen_window(itertools.count(1), 3)
-
-    >>> next(w)
-    (1, 2, 3)
-
-    >>> next(w)
-    (2, 3, 4)
-    """
-    window = deque(itertools.islice(iterable, size))
-
-    while True:
-        yield tuple(window)
-
-        window.popleft()
-        window.append(next(iterable))
-
-
 def solve(target):
-    for window in gen_window(itertools.count(1), target):
+    for window in gen_window(count(1), target):
         prime_factor_window = list(map(prime_factors, window))
 
         all_target_factors = all(
@@ -97,5 +78,5 @@ def solve(target):
             return window[0]
 
 
-TARGET = 4
-print(solve(TARGET))
+if __name__ == "__main__":
+    print(solve(4))

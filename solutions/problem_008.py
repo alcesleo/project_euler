@@ -1,7 +1,8 @@
-from functools import reduce
-import operator
+from math import prod
+from common.digits import split_digits
+from common.tools import gen_window
 
-DIGITS = """
+NUMBER = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -24,20 +25,19 @@ DIGITS = """
 71636269561882670428252483600823257530420752963450
 """.replace("\n", "")
 
-WINDOW_SIZE = 13
 
+def solve(number, window_size):
+    """
+    >>> solve(NUMBER, 4)
+    5832
+    """
+    digits = split_digits(number)
+    greatest_product = 0
 
-def product_of_digits(window):
-    return reduce(operator.mul, [int(x) for x in window])
+    for window in gen_window(digits, window_size):
+        greatest_product = max(greatest_product, prod(window))
 
+    return greatest_product
 
-greatest_product = 0
-
-for start in range(0, len(DIGITS) - (WINDOW_SIZE - 1)):
-    window = DIGITS[start:start + WINDOW_SIZE]
-    product = product_of_digits(window)
-
-    if product > greatest_product:
-        greatest_product = product
-
-print(greatest_product)
+if __name__ == "__main__":
+    print(solve(NUMBER, 13))

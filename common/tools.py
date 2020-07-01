@@ -3,6 +3,7 @@
 
 import itertools
 import os
+from collections import deque
 
 
 def nth(iterable, index):
@@ -57,3 +58,29 @@ def slice_grid(grid, row=0, col=0, num_items=None, hstep=0, vstep=0):
         col += hstep
 
     return result
+
+
+def gen_window(iterable, size):
+    """Iterates over a window of size items in iterable
+
+    >>> w = gen_window(itertools.count(1), 3)
+    >>> next(w)
+    (1, 2, 3)
+
+    >>> next(w)
+    (2, 3, 4)
+
+    >>> list(gen_window([1, 2, 3, 4, 5], 3))
+    [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+    """
+    iterator = iter(iterable)
+    window = deque(itertools.islice(iterator, size))
+
+    while True:
+        yield tuple(window)
+
+        try:
+            window.append(next(iterator))
+            window.popleft()
+        except StopIteration:
+            break
