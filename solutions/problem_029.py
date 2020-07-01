@@ -1,12 +1,15 @@
-LIMIT = 100
+def solve(limit):
+    """
+    >>> solve(5)
+    15
+    """
+    numbers = set()
 
-numbers = set()
+    for a in range(2, limit + 1):
+        for b in range(2, limit + 1):
+            numbers.add(a ** b)
 
-for a in range(2, LIMIT + 1):
-    for b in range(2, LIMIT + 1):
-        numbers.add(a ** b)
+    return len(numbers)
 
-numbers = list(numbers)
-numbers.sort()
-
-print(len(numbers))
+if __name__ == "__main__":
+    print(solve(100))

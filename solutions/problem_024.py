@@ -1,12 +1,14 @@
-import itertools
+from itertools import permutations
 from common.tools import nth
 from common.digits import join_digits
 
-TARGET = 1_000_000
-DIGITS = list(range(10))
 
-permutations = itertools.permutations(DIGITS)
-permutation = nth(permutations, TARGET)
-result = join_digits(permutation)
+def solve(target):
+    digits = list(range(10))
+    permutation = nth(permutations(digits), target)
 
-print(result)
+    return join_digits(permutation)
+
+
+if __name__ == "__main__":
+    print(solve(1_000_000))

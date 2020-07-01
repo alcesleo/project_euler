@@ -1,22 +1,19 @@
-from functools import lru_cache
 from common.math import proper_divisors
+from common.logging import info
 
-LIMIT = 10_000
+def solve(limit):
+    divisor_sum = {}
+    for n in range(limit):
+        divisor_sum[n] = sum(proper_divisors(n))
 
+    result = 0
+    for a in range(1, limit):
+        for b in range(a + 1, limit):
+            if divisor_sum[a] == b and divisor_sum[b] == a:
+                info(f"d({a}) = {b}\td({b}) = {a}")
+                result += a + b
 
-@lru_cache(maxsize=LIMIT)
-def sum_proper_divisors(n):
-    return sum(proper_divisors(n))
+    return result
 
-
-def is_amicable(a, b):
-    return a != b and sum_proper_divisors(a) == b and sum_proper_divisors(b) == a
-
-
-result = 0
-for a in range(1, LIMIT):
-    for b in range(a, LIMIT):
-        if is_amicable(a, b):
-            result += a + b
-
-print(result)
+if __name__ == "__main__":
+    print(solve(10_000))

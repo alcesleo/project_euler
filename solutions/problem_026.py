@@ -21,21 +21,17 @@ def prime_factors(n):
 
 
 def is_recurring(denominator):
-    """
-    If the prime factors of the denominator is 2, 5 or both, the decimal is terminating.
-    """
+    """If the prime factors of the denominator is 2, 5 or both, the decimal is terminating."""
     return not {2, 5}.issuperset(prime_factors(denominator))
 
 
 def decimals(denominator):
-    """Returns the decimals of NUMERATOR / denominator with the 0. and last rounded number stripped
-    """
+    """Returns the decimals of NUMERATOR / denominator with the 0. and last rounded number stripped."""
     return str(NUMERATOR / decimal.Decimal(denominator))[2:-1]
 
 
 def recurring_cycle(denominator):
-    """Returns the length of the recurring cycle of decimals
-    """
+    """Returns the length of the recurring cycle of decimals."""
     if not is_recurring(denominator):
         return 0
 
@@ -49,17 +45,22 @@ def recurring_cycle(denominator):
     return 0
 
 
-def solve():
-    longest_recurring_cycle = 0
-    longest_recurring_cycle_denominator = 0
+def solve(limit):
+    """
+    >>> solve(10)
+    7
+    """
+    longest_cycle = 0
+    longest_cycle_denominator = 0
 
-    for d in range(1, LIMIT + 1):
+    for d in range(1, limit + 1):
         recurring_cycle_length = recurring_cycle(d)
-        if recurring_cycle_length > longest_recurring_cycle:
-            longest_recurring_cycle = recurring_cycle_length
-            longest_recurring_cycle_denominator = d
+        if recurring_cycle_length > longest_cycle:
+            longest_cycle = recurring_cycle_length
+            longest_cycle_denominator = d
 
-    return longest_recurring_cycle_denominator
+    return longest_cycle_denominator
 
 
-print(solve())
+if __name__ == "__main__":
+    print(solve(LIMIT))

@@ -1,15 +1,23 @@
-WIDTH = 1001
 SIDES = 4
 
-n = 1
-step = 2
-diagonals = [n]
-while n < WIDTH * WIDTH:
-    for i in range(SIDES):
-        n += step
-        diagonals.append(n)
+def solve(width):
+    """
+    >>> solve(5)
+    101
+    """
+    n = 1
+    step = 2
+    sum_diagonals = 1
 
-    step += 2
+    while n < width * width:
+        for i in range(SIDES):
+            n += step
+            sum_diagonals += n
+
+        step += 2
+
+    return sum_diagonals
 
 
-print(sum(diagonals))
+if __name__ == "__main__":
+    print(solve(1001))

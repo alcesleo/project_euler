@@ -6,9 +6,14 @@ def gen_fibonacci():
         a, b = b, a + b
 
 
-LIMIT = 1000
+def solve(limit):
+    """
+    >>> solve(3)
+    12
+    """
+    for i, n in enumerate(gen_fibonacci(), 1):
+        if len(str(n)) >= limit:
+            return i
 
-for i, n in enumerate(gen_fibonacci(), 1):
-    if len(str(n)) >= LIMIT:
-        print(i)
-        break
+if __name__ == "__main__":
+    print(solve(1000))
