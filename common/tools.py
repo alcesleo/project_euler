@@ -6,7 +6,11 @@ import os
 
 
 def nth(iterable, index):
-    """Return the nth 1-index in an iterable."""
+    """Return the nth 1-index in an iterable.
+
+    >>> nth([10, 20, 30], 1)
+    10
+    """
     return next(itertools.islice(iterable, index - 1, None))
 
 

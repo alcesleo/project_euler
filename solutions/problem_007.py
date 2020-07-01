@@ -1,8 +1,10 @@
 from common.primes import gen_primes
 from common.tools import nth
 
-TARGET = 10_001
 
-nth_prime = nth(gen_primes(), TARGET)
+def solve(target):
+    return nth(gen_primes(), target)
 
-print(nth_prime)
+
+if __name__ == "__main__":
+    print(solve(10_001))
