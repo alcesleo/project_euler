@@ -1,5 +1,6 @@
 from collections import Counter
 from common.digits import split_digits
+from common.logging import info
 
 PANDIGITAL = Counter(range(1, 10))
 
@@ -16,18 +17,24 @@ def concatenated_product(n, up_to):
     return result
 
 
-result = 0
-limit = 100_000
-scope = 999999999
+def solve():
+    largest_pandigital = 0
+    limit = 100_000
+    scope = 999999999
 
-for x in range(1, limit):
-    for up_to in range(1, 10):
-        c = int(concatenated_product(x, up_to))
+    for x in range(1, limit):
+        for up_to in range(1, 10):
+            c = int(concatenated_product(x, up_to))
 
-        if c > scope:
-            break
+            if c > scope:
+                break
 
-        if is_pandigital(c) and c > result:
-            result = c
+            if is_pandigital(c) and c > largest_pandigital:
+                info(f"{c}, n={up_to}")
+                largest_pandigital = c
 
-print(result)
+    return largest_pandigital
+
+
+if __name__ == "__main__":
+    print(solve())

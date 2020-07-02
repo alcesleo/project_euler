@@ -1,5 +1,4 @@
-from functools import reduce
-from operator import mul
+from math import prod
 from itertools import count
 from common.digits import split_digits
 from common.tools import nth
@@ -15,7 +14,10 @@ def nth_champernowne_decimal(index):
     return nth(gen_champernownes_decimals(), index)
 
 
-result = reduce(
-    mul, map(nth_champernowne_decimal, [1, 100, 1000, 10_000, 100_000, 1_000_000]))
+def solve():
+    return prod(
+        map(nth_champernowne_decimal, [1, 100, 1000, 10_000, 100_000, 1_000_000]))
 
-print(result)
+
+if __name__ == "__main__":
+    print(solve())

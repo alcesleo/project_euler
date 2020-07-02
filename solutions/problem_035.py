@@ -2,6 +2,7 @@ from itertools import takewhile
 from collections import deque
 from common.digits import split_digits, join_digits
 from common.primes import gen_primes, is_prime
+from common.logging import info
 
 
 def rotations(n):
@@ -15,12 +16,22 @@ def rotations(n):
     return result
 
 
-LIMIT = 1_000_000
-primes = takewhile(lambda n: n < LIMIT, gen_primes())
-count = 0
+def solve(limit):
+    """Returns the numbers of circular primes below limit.
 
-for p in primes:
-    if all(map(is_prime, rotations(p))):
-        count += 1
+    >>> solve(100)
+    13
+    """
+    primes = takewhile(lambda n: n < limit, gen_primes())
+    count = 0
 
-print(count)
+    for p in primes:
+        if all(map(is_prime, rotations(p))):
+            info(p)
+            count += 1
+
+    return count
+
+
+if __name__ == "__main__":
+    print(solve(1_000_000))

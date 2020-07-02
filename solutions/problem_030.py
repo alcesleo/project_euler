@@ -15,7 +15,7 @@ def solve(power, limit=100_000):
 
     for n in range(2, limit):
         if n == sum_of_digits_raised(n, power):
-            info(f"{n} = {' + '.join(map(lambda d: f'{d}^{power}', list(str(n))))}")
+            info(f"{n} = %s", " + ".join(map(lambda d: f"{d}^{power}", str(n))))
             result += n
 
     return result
